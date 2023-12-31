@@ -2,14 +2,14 @@ package controller;
 
 import java.io.IOException;
 import javafx.scene.control.Button;
-import model.game.TicTacToe;
+import model.game.HumanComputer;
 
 public class GameModeController extends ChooseController {  
     Button btnHumanComputer;
     
     public GameModeController(){
-        btnHumanComputer = new Button("Humano VS Computadora");
-        btnHumanComputer.setUserData(new TicTacToe());
+        btnHumanComputer = new Button("Humano VS Computadora");               
+        btnHumanComputer.setUserData(new HumanComputer());
         btnHumanComputer.setOnAction(e -> {
             try {
                 App.setRoot("choose", new SymbolController(this));

@@ -1,15 +1,13 @@
-package model.minmax;
-
 //package model.minmax;
 //
 //import model.board.Box;
 //import model.board.Board;
 //
 //public class OptionRetriever {
-//    Board board;
-//    Player player;
-//    Player oponent;
-//    Tree tree;
+//    private Board board;
+//    private Player player;
+//    private Player oponent;
+//    private Tree<Board> tree;
 //    
 //    public void buildTree(){
 //        useBoard(board, player, tree);
@@ -24,7 +22,7 @@ package model.minmax;
 //            Box box = board.boxes[i];
 //            if (box.isEmpty()){
 //                Board cBoard = new Board(board);
-//                cBoard.boxes[i].setSymbol(player.getSymbol());
+//                cBoard.setSymbol(player.getSymbol(), i);
 //                tree.getChildren().add(new Tree(cBoard));
 //            }
 //        }

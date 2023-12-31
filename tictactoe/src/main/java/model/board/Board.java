@@ -1,7 +1,6 @@
 package model.board;
 
 import controller.Suscriber;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -11,6 +10,15 @@ public class Board {
     public Box[] boxes;
     private List<Suscriber> suscribers;
     private Symbol winner;
+    private int lastMovement;
+
+    public int getLastMovement() {
+        return lastMovement;
+    }
+
+    public void setLastMovement(int lastMovement) {
+        this.lastMovement = lastMovement;
+    }
     
     public Board(){
         boxes = new Box[ROWS*COLUMNS];
@@ -25,13 +33,14 @@ public class Board {
         
 //    public void setSymbol(Symbol symbol, int arrayIndex){
 //        boxes[arrayIndex].setSymbol(symbol);
-//        if (this.isFull()){
-//            this.notifyTie();
+//        setLastMovement(arrayIndex);
+//        
+//        if (this.isWinner(symbol)){
+//            this.winner = symbol;
 //        }
 //        
-//        if (isWinner(symbol)){
-//            this.winner = symbol;
-//            this.notifyWinner();
+//        if (this.isWinner(symbol) || this.isFull()){
+//            this.notifySuscribers();
 //        }
 //    }
     
@@ -54,25 +63,19 @@ public class Board {
 //    }
     
    
-    private boolean isWinner(Symbol symbol, Box[] subBoxes){
-        int i = 0;
-        int length = subBoxes.length;
-        Box box =  length > 0 ? subBoxes[i]: null;
-        while (i++ < length && box.getSymbol().equals(symbol)){
-            box = subBoxes[i];
-        }
-        return i == length;
-    }
+//    private boolean isWinner(Symbol symbol, Box[] subBoxes){
+//        int i = 0;
+//        int length = subBoxes.length;
+//        Box box =  length > 0 ? subBoxes[i]: null;
+//        while (i++ < length && box.getSymbol().equals(symbol)){
+//            box = subBoxes[i];
+//        }
+//        return i == length;
+//    }
     
-    private void notifyTie(){
+    private void notifySuscribers() {
         for (Suscriber s: suscribers){
-            s.updateTie();
-        }
-    }
-    
-    private void notifyWinner(){
-        for (Suscriber s: suscribers){
-            s.updateWinner();
+            s.update();
         }
     }
 

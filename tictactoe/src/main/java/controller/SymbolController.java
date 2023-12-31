@@ -3,15 +3,19 @@ package controller;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import model.board.Symbol;
+import model.game.Computer;
+import model.game.Human;
 import model.game.Player;
 
 public class SymbolController extends ChooseController {
-    GameModeController gameModeController;
-    Player player;
+    private GameModeController gameModeController;
+    Player human;
+    Player computer;
     
     public SymbolController(GameModeController gameModeController){
         this.gameModeController = gameModeController;
-        this.player = new Player();
+        this.human = new Human();
+        this.computer = new Computer();
     }
     
     @Override
@@ -23,18 +27,28 @@ public class SymbolController extends ChooseController {
         btnX.setUserData(new Symbol('X'));
         btnO.setUserData(new Symbol('O'));
         
-        for (Button btn: new Button[]{btnX, btnO}){
-            btn.setOnAction(e -> {
-                player.setSymbol((Symbol) btn.getUserData());
-                try {
-                    App.setRoot("choose", new TurnController(this));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-            
-            btnContainer.getChildren().add(btn);
-        }
+        btnX.setOnAction(e -> {
+            human.setSymbol((Symbol) btnX.getUserData());
+            computer.setSymbol((Symbol) btnO.getUserData());
+            try {
+                App.setRoot("choose", new TurnController(this));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }            
+        });
+        
+        btnO.setOnAction(e -> {
+            human.setSymbol((Symbol) btnO.getUserData());
+            computer.setSymbol((Symbol) btnX.getUserData());
+            try {
+                App.setRoot("choose", new TurnController(this));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }            
+        });
+        
+        btnContainer.getChildren().add(btnX);
+        btnContainer.getChildren().add(btnO);
     }
     
 }

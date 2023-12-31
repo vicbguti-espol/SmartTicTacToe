@@ -12,6 +12,7 @@ public class TicTacToe {
     
     public TicTacToe(){
         players = new LinkedList<>();
+        board = new Board();
     }
     
     public Queue<Player> getPlayers(){

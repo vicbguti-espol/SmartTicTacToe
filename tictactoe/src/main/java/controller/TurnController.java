@@ -3,13 +3,11 @@ package controller;
 import java.io.IOException;
 import java.util.Queue;
 import javafx.scene.control.Button;
-import model.game.Computer;
-import model.game.Human;
 import model.game.Player;
 
 public class TurnController extends ChooseController {
-    SymbolController symbolController;
-    Queue<Player> qPlayers;
+    private SymbolController symbolController;
+    private Queue<Player> qPlayers;
         
     TurnController(SymbolController symbolController){
         this.symbolController = symbolController;
@@ -24,8 +22,8 @@ public class TurnController extends ChooseController {
         btnHuman.setOnAction(e -> {
             try {
                 App.setRoot("game", new GameController(this));
-                qPlayers.offer(new Human());
-                qPlayers.offer(new Computer());
+                qPlayers.offer(symbolController.human);
+                qPlayers.offer(symbolController.computer);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -34,8 +32,8 @@ public class TurnController extends ChooseController {
         btnComputer.setOnAction(e -> {
             try {
                 App.setRoot("game", new GameController(this));
-                qPlayers.offer(new Computer());
-                qPlayers.offer(new Human());
+                qPlayers.offer(symbolController.computer);
+                qPlayers.offer(symbolController.human);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
