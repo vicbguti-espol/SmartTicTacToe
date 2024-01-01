@@ -1,6 +1,6 @@
 package minimax;
 
-import player.Player;
+import model.player.Player;
 
 public class DiagonalsWeight extends WeightCalculator{
     

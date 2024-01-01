@@ -5,10 +5,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import model.board.Board;
 import model.board.Symbol;
+import model.player.Player;
 
 public class TicTacToe {
-    private Queue<Player> players;
-    private Board board;
+    public Queue<Player> players;
+    public Board board;
     
     public TicTacToe(){
         players = new LinkedList<>();
@@ -24,7 +25,7 @@ public class TicTacToe {
         if (winnerSymbol != null){
             Iterator<Player> cPlayers = players.iterator();
             Player cPlayer = cPlayers.hasNext() ? cPlayers.next() : null;
-            while (cPlayers.hasNext() && !cPlayer.getSymbol().equals(board.getWinner())){
+            while (cPlayers.hasNext() && cPlayer != null && !cPlayer.getSymbol().equals(board.getWinner())){
                 cPlayer = cPlayers.next();
             }
             return cPlayer;

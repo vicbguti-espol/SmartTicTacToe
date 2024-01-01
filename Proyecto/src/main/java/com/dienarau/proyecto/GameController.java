@@ -17,9 +17,9 @@ import javafx.stage.Stage;
 import minimax.Minimax;
 import minimax.Symbol;
 import minimax.TicTacToe;
-import player.Bot;
-import player.Human;
-import player.Player;
+import model.player.Bot;
+import model.player.Human;
+import model.player.Player;
 
 public class GameController implements Initializable, Subscriber {
 

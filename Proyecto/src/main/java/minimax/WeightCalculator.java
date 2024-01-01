@@ -1,6 +1,6 @@
 package minimax;
 
-import player.Player;
+import model.player.Player;
 import java.util.Iterator;
 
 public abstract class WeightCalculator {

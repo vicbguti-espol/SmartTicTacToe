@@ -1,16 +1,16 @@
-package iterators;
+package model.board.iterators;
 
-import minimax.Box;
 import java.util.Iterator;
-import minimax.Board;
+import model.board.Board;
+import model.board.Box;
 
-public class IteratroByDiagonal implements Iterator<Box[]>{
+public class IteratorByDiagonal implements Iterator<Box[]>{
     Box[] boxes;
     int index;
     int max;
     
-    public IteratroByDiagonal(Board board){
-        this.boxes = board.getBoxes();
+    public IteratorByDiagonal(Board board){
+        this.boxes = board.boxes;
         index = 0;
         max = 3;
     }

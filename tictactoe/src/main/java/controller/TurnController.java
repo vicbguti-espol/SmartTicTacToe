@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.Queue;
 import javafx.scene.control.Button;
-import model.game.Player;
+import model.player.Player;
 
 public class TurnController extends ChooseController {
     private SymbolController symbolController;

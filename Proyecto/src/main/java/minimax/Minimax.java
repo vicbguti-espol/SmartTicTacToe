@@ -1,9 +1,9 @@
 package minimax;
 
-import player.Player;
+import model.player.Player;
 import java.util.Iterator;
 import tree.MiniMaxTree;
-import tree.Tree;
+import dstructure.Tree;
 
 public class Minimax {
     private Board board;

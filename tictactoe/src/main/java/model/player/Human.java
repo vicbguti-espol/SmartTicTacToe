@@ -1,8 +1,10 @@
-package player;
+package model.player;
 
-import minimax.Symbol;
+import model.board.Symbol;
 
 public class Human extends Player {
+    
+    public Human(){}
 
     public Human(Symbol symbol) {
         super(symbol);

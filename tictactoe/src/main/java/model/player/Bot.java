@@ -1,9 +1,10 @@
-package player;
+package model.player;
 
-import minimax.Symbol;
-import minimax.TicTacToe;
+import model.board.Symbol;
 
 public class Bot extends Player {
+    
+    public Bot(){}
     
     public Bot(Symbol symbol) {
         super(symbol);

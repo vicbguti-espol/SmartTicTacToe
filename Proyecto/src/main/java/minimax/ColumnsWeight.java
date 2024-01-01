@@ -1,6 +1,6 @@
 package minimax;
 
-import player.Player;
+import model.player.Player;
 
 public class ColumnsWeight extends WeightCalculator{
     

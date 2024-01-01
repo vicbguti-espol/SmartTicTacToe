@@ -2,6 +2,8 @@ package model.board;
 
 public class Box {
     private Symbol symbol;
+   
+    public Box(){}
     
     public Box(Symbol symbol){
         this.symbol = symbol;
@@ -22,4 +24,11 @@ public class Box {
     public Symbol getSymbol(){
         return symbol;
     }
+
+    @Override
+    public String toString() {
+        return "Box{" + "symbol=" + symbol + '}';
+    }
+    
+    
 }
