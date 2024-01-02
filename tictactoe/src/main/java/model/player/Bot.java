@@ -2,11 +2,11 @@ package model.player;
 
 import model.board.Symbol;
 
-public class Computer extends Player {
+public class Bot extends Player {
     
-    public Computer() {}
+    public Bot(){}
     
-    public Computer(Symbol symbol) {
+    public Bot(Symbol symbol) {
         super(symbol);
     }
     
@@ -14,4 +14,5 @@ public class Computer extends Player {
     public String toString() {
         return "Computadora";
     }
+    
 }

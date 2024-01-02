@@ -3,8 +3,8 @@ package controller;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import model.player.Player;
 import model.game.TicTacToe;
+import model.player.Player;
 
 public class ResultController implements Controller {
     @FXML private Label lblResult;

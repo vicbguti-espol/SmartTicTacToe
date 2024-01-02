@@ -1,4 +1,4 @@
-package iterator;
+package model.board.iterators;
 
 import java.util.Iterator;
 import model.board.Board;

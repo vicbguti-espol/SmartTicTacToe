@@ -15,10 +15,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import model.player.Computer;
 import model.player.Player;
 import model.game.TicTacToe;
 import model.minimax.Minimax;
+import model.player.Bot;
 
 public class GameController implements Subscriber, Controller {
 
@@ -62,7 +62,7 @@ public class GameController implements Subscriber, Controller {
         lblTurn.setText(playersTurn.peek().toString());
         btnTest.setOnAction(e -> update());
         initBoard();
-        if (playersTurn.peek() instanceof Computer) botTurn();
+        if (playersTurn.peek() instanceof Bot) botTurn();
     }
     
     private void initBoard() {
@@ -84,7 +84,7 @@ public class GameController implements Subscriber, Controller {
                     playersTurn.offer(currentPlayer);
                     lblTurn.setText(currentPlayer.toString());
                     
-                    if (playersTurn.peek() instanceof Computer) botTurn();
+                    if (playersTurn.peek() instanceof Bot) botTurn();
                     //botTurn();
                 }
             });

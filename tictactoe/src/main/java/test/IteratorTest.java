@@ -21,19 +21,19 @@ public class IteratorTest {
         board.setPosibleSymbol(new Symbol('O'), 8);
         
         System.out.println("Recorridos de filas");
-        Iterator<Box[]> itr = board.rowsIterator();
+        Iterator<Box[]> itr = board.rowIterator();
         while (itr.hasNext()) {
             System.out.println(Arrays.toString(itr.next()));
         }
         
         System.out.println("Recorridos de columnas");
-        Iterator<Box[]> itc = board.columnsIterator();
+        Iterator<Box[]> itc = board.columnIterator();
         while (itc.hasNext()) {
             System.out.println(Arrays.toString(itc.next()));
         }
         
         System.out.println("Recorridos de diagonales");
-        Iterator<Box[]> itd = board.diagonalsIterator();
+        Iterator<Box[]> itd = board.diagonalIterator();
         while (itd.hasNext()) {
             System.out.println(Arrays.toString(itd.next()));
         }

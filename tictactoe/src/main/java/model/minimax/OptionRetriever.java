@@ -1,17 +1,16 @@
 package model.minimax;
 
-import java.util.LinkedList;
 import model.board.Box;
 import model.board.Board;
 import model.game.TicTacToe;
 import model.player.Player;
-import tree.Tree;
+import dstructure.Tree;
 
 public class OptionRetriever {
     private Board board;
     private Player player;
     private Player oponent;
-    private Tree<Board> tree;
+    public Tree<Board> tree;
     
      public OptionRetriever(TicTacToe game){
         board = game.getBoard();

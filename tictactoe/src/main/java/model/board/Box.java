@@ -2,8 +2,8 @@ package model.board;
 
 public class Box {
     private Symbol symbol;
-    
-    public Box() {}
+   
+    public Box(){}
     
     public Box(Symbol symbol){
         this.symbol = symbol;

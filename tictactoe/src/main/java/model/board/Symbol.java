@@ -8,7 +8,7 @@ public class Symbol {
     public Symbol(Character character) {
         this.character = character;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -29,10 +29,6 @@ public class Symbol {
         final Symbol other = (Symbol) obj;
         return Objects.equals(this.character, other.character);
     }
-    
-    /*public Symbol() {
-        //this.character = '_';
-    }*/
 
     @Override
     public String toString() {

@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import model.board.Symbol;
-import model.player.Computer;
+import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 
@@ -15,7 +15,7 @@ public class SymbolController extends ChooseController {
     public SymbolController(GameModeController gameModeController){
         this.gameModeController = gameModeController;
         this.human = new Human();
-        this.computer = new Computer();
+        this.computer = new Bot();
     }
     
     @Override

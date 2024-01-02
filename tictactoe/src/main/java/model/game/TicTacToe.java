@@ -6,10 +6,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import model.board.Board;
 import model.board.Symbol;
+import model.player.Player;
 
 public class TicTacToe {
-    private Queue<Player> players;
-    private Board board;
+    public Queue<Player> players;
+    public Board board;
     
     public TicTacToe(){
         players = new LinkedList<>();

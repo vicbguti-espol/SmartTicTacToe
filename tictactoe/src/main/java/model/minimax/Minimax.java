@@ -5,7 +5,7 @@ import java.util.Iterator;
 import model.board.Board;
 import model.game.TicTacToe;
 //import tree.MiniMaxTree;
-import tree.Tree;
+import dstructure.Tree;
 
 public class Minimax {
     private TicTacToe game;

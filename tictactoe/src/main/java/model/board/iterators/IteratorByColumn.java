@@ -1,4 +1,4 @@
-package iterator;
+package model.board.iterators;
 
 import model.board.Box;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ public class IteratorByColumn implements Iterator<Box[]>{
     int max;
     
     public IteratorByColumn(Board board){
-        this.boxes = board.getBoxes();
+        this.boxes = board.boxes;
         this.index = 0;
         this.max = 3;
     }

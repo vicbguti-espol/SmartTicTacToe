@@ -1,27 +1,21 @@
 package model.board;
 
 import controller.Subscriber;
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
-import iterator.*;
 import java.util.LinkedList;
+import java.util.List;
+import model.board.iterators.*;
+
 
 
 public class Board {
     public Integer ROWS = 3;
     public Integer COLUMNS = 3;
     public Box[] boxes;
-    private List<Subscriber> suscribers;
+    public List<Subscriber> suscribers;
     private Symbol winner;
     private int lastMovement;
-
-    public int getLastMovement() {
-        return lastMovement;
-    }
-
-    public void setLastMovement(int lastMovement) {
-        this.lastMovement = lastMovement;
-    }
     
     public Board(){
         suscribers = new LinkedList<>();
@@ -30,14 +24,14 @@ public class Board {
             boxes[i] = new Box();
         }
     }
-    
+   
     public Board(Board board){
         this();
         for (int i = 0; i < ROWS*COLUMNS; i++){
             boxes[i] = new Box(board.boxes[i]);
         }
     }
-        
+
     public void setSymbol(Symbol symbol, int arrayIndex){
         boxes[arrayIndex].setSymbol(symbol);
         setLastMovement(arrayIndex);
@@ -56,17 +50,37 @@ public class Board {
         setLastMovement(arrayIndex);
     }
     
+    public Iterator<Box[]> rowIterator(){
+        return new IteratorByRow(this);
+    }
+    
+    public Iterator<Box[]> columnIterator(){
+        return new IteratorByColumn(this);
+    }
+    
+    public Iterator<Box[]> diagonalIterator(){
+        return new IteratorByDiagonal(this);
+    }
+    
+    public int getLastMovement() {
+        return lastMovement;
+    }
+
+    private void setLastMovement(int lastMovement) {
+        this.lastMovement = lastMovement;
+    }
+    
     public Symbol getWinner(){
         return winner;
     }
     
     public boolean isWinner(Symbol symbol){
-        Iterator<Box[]>[] iterators = new Iterator[]{this.rowsIterator(), this.columnsIterator(), this.diagonalsIterator()};
+        Iterator<Box[]>[] iterators = new Iterator[]{this.rowIterator(), this.columnIterator(), this.diagonalIterator()};
         
         for (Iterator<Box[]> it: iterators){
             while (it.hasNext()){
                 Box[] subBoxes = it.next();
-                if (isWinner(symbol, subBoxes)){
+                if (this.isWinner(symbol, subBoxes)){
                     return isWinner(symbol, subBoxes);
                 }
             }
@@ -96,7 +110,6 @@ public class Board {
     public void addSubscriber(Subscriber sub) {
         this.suscribers.add(sub);
     }
-
     
     private boolean isFull(){
         int i = 0;
@@ -111,19 +124,7 @@ public class Board {
     public Box[] getBoxes() {
         return boxes;
     }
-
-    public Iterator<Box[]> columnsIterator() {
-        return new IteratorByColumn(this);
-    }
-
-    public Iterator<Box[]> rowsIterator() {
-        return new IteratorByRow(this);
-    }
-
-    public Iterator<Box[]> diagonalsIterator() {
-        return new IteratorByDiagonal(this);
-    }
-
+    
     @Override
     public String toString() {
         String board = "Board{" ;
@@ -132,5 +133,10 @@ public class Board {
         }
         return board + '}';
     }
+    
+    /*@Override
+    public String toString() {
+        return "Board{" + "boxes=" + Arrays.toString(boxes) + '}';
+    }*/
 }
     

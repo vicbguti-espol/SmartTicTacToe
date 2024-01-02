@@ -2,10 +2,10 @@ package model.player;
 
 import model.board.Symbol;
 
-public class Player {
+public abstract class Player {
     protected Symbol symbol;
     
-    public Player() {}
+    public Player(){}
 
     public Player(Symbol symbol) {
         this.symbol = symbol;
@@ -14,7 +14,7 @@ public class Player {
     public Symbol getSymbol() {
         return symbol;
     }
-
+    
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
     }
