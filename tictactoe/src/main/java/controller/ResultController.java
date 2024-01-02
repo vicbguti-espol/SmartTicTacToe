@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import model.game.Player;
+import model.player.Player;
 import model.game.TicTacToe;
 
 public class ResultController implements Controller {

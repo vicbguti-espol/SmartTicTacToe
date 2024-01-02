@@ -1,16 +1,21 @@
 package controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.control.Button;
-import model.game.Player;
+import model.player.Player;
 
 public class TurnController extends ChooseController {
     private SymbolController symbolController;
-    private Queue<Player> qPlayers;
+    public Queue<Player> qPlayers;
+    GameController gameController;
         
     TurnController(SymbolController symbolController){
         this.symbolController = symbolController;
+        this.gameController = new GameController();
+        
+        qPlayers = new LinkedList<>();
     }
             
     @Override
@@ -21,9 +26,9 @@ public class TurnController extends ChooseController {
         
         btnHuman.setOnAction(e -> {
             try {
-                App.setRoot("game", new GameController(this));
                 qPlayers.offer(symbolController.human);
                 qPlayers.offer(symbolController.computer);
+                App.setRoot("game", new GameController(this));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -31,9 +36,9 @@ public class TurnController extends ChooseController {
         
         btnComputer.setOnAction(e -> {
             try {
-                App.setRoot("game", new GameController(this));
                 qPlayers.offer(symbolController.computer);
                 qPlayers.offer(symbolController.human);
+                App.setRoot("game", new GameController(this));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

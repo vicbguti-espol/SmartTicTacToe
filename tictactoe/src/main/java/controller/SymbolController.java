@@ -3,9 +3,9 @@ package controller;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import model.board.Symbol;
-import model.game.Computer;
-import model.game.Human;
-import model.game.Player;
+import model.player.Computer;
+import model.player.Human;
+import model.player.Player;
 
 public class SymbolController extends ChooseController {
     private GameModeController gameModeController;
