@@ -30,6 +30,8 @@ public class ResultController implements Controller {
         }
         
         lblResult.setText(result); 
+        System.out.println(ticTacToe.board);
+        System.out.println(result);
     }
     
 }

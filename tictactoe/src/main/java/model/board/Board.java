@@ -35,7 +35,7 @@ public class Board {
     public void setSymbol(Symbol symbol, int arrayIndex){
         boxes[arrayIndex].setSymbol(symbol);
         setLastMovement(arrayIndex);
-        
+       
         if (this.isWinner(symbol)){
             this.winner = symbol;
         }
@@ -78,6 +78,7 @@ public class Board {
         Iterator<Box[]>[] iterators = new Iterator[]{this.rowIterator(), this.columnIterator(), this.diagonalIterator()};
         
         for (Iterator<Box[]> it: iterators){
+            System.out.println("Iterator starting");
             while (it.hasNext()){
                 Box[] subBoxes = it.next();
                 if (this.isWinner(symbol, subBoxes)){
@@ -90,15 +91,15 @@ public class Board {
     
    
     private boolean isWinner(Symbol symbol, Box[] subBoxes){
-        int emptyBoxes = 0;
+        int count = 0;
         for (Box box: subBoxes){
-            if (box.isEmpty()){
-                emptyBoxes++;
-            } else if (!box.getSymbol().equals(symbol)){
-                return false;
-            }  
+            if (box.getSymbol() != null && box.getSymbol().equals(symbol)){
+                count++;
+            }
         }
-        return emptyBoxes != subBoxes.length;
+        System.out.println(Arrays.toString(subBoxes));
+        System.out.println("count: " + count);
+        return count == subBoxes.length;
     }
     
     private void notifySuscribers() {
@@ -111,10 +112,10 @@ public class Board {
         this.suscribers.add(sub);
     }
     
-    private boolean isFull(){
+    public boolean isFull(){
         int i = 0;
         Box box = boxes[i];
-        while(!box.isEmpty()){
+        while(!box.isEmpty() && i < ROWS*COLUMNS - 1){ 
             box = boxes[i++];
         }
         
@@ -127,16 +128,13 @@ public class Board {
     
     @Override
     public String toString() {
-        String board = "Board{" ;
-        for (Box box : boxes) {
-            board += box.getSymbol() + ";";
+        String board = "Board{\n" ;
+        Iterator<Box[]> it = this.rowIterator();
+        while (it.hasNext()){
+            Box[] row = it.next();
+            board += Arrays.toString(row) + "\n";
         }
         return board + '}';
     }
-    
-    /*@Override
-    public String toString() {
-        return "Board{" + "boxes=" + Arrays.toString(boxes) + '}';
-    }*/
 }
     

@@ -1,6 +1,5 @@
 package model.game;
 
-import model.player.Player;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -28,6 +27,7 @@ public class TicTacToe {
     
     public Player getWinner(){
         Symbol winnerSymbol = board.getWinner();
+        System.out.println(winnerSymbol);
         if (winnerSymbol != null){
             Iterator<Player> cPlayers = players.iterator();
             Player cPlayer = cPlayers.hasNext() ? cPlayers.next() : null;
@@ -54,6 +54,5 @@ public class TicTacToe {
         this.players.offer(oponent);
         return oponent;
     }
-    
     
 }

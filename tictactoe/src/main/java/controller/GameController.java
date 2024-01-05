@@ -33,7 +33,7 @@ public class GameController implements Subscriber, Controller {
     
     private TicTacToe game;
     
-    TurnController turnController;
+    TurnController turnController; 
     
     @FXML
     private Button btnTest;
@@ -55,12 +55,13 @@ public class GameController implements Subscriber, Controller {
         this.playersTurn = turnController.qPlayers;
         this.game = new TicTacToe();
         game.setPlayers(playersTurn);
+        game.board.addSubscriber(this);
         /*playersTurn = new LinkedList<>();
         playersTurn.offer(new Human(new Symbol('X')));
         playersTurn.offer(new Bot(new Symbol('O')));*/
         playersTurn = game.getPlayers();
         lblTurn.setText(playersTurn.peek().toString());
-        btnTest.setOnAction(e -> update());
+        //btnTest.setOnAction(e -> update());
         initBoard();
         if (playersTurn.peek() instanceof Bot) botTurn();
     }
@@ -79,13 +80,12 @@ public class GameController implements Subscriber, Controller {
                     Player currentPlayer = playersTurn.poll();
                     
                     game.getBoard().setSymbol(currentPlayer.getSymbol(), index);
-                    
+                    System.out.println(game.board.isFull());
                     lblBox.setText(currentPlayer.getSymbol() + "");
                     playersTurn.offer(currentPlayer);
                     lblTurn.setText(currentPlayer.toString());
                     
                     if (playersTurn.peek() instanceof Bot) botTurn();
-                    //botTurn();
                 }
             });
             i++;
@@ -119,22 +119,22 @@ public class GameController implements Subscriber, Controller {
         
     }
     
-    public void popUpResult() {
-        System.out.println("GANO ALGUIEN");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("result.fxml"));
-            Parent root = loader.load();
-            
-            /// pasar tictactoe al controlador de resultado
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Resultado");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void popUpResult() {
+//        System.out.println("GANO ALGUIEN");
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("result.fxml"));
+//            Parent root = loader.load();
+//            
+//            /// pasar tictactoe al controlador de resultado
+//
+//            Scene scene = new Scene(root);
+//            Stage stage = new Stage();
+//            stage.setScene(scene);
+//            stage.setTitle("Resultado");
+//            stage.show();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     
 }
