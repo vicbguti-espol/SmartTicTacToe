@@ -18,4 +18,14 @@ public abstract class Player {
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getClass().getSimpleName());
+        sb.append("(").append(symbol).append(")");
+        return sb.toString();
+    }
+    
+    
 }

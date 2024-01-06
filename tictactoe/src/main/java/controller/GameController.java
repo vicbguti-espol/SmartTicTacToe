@@ -1,20 +1,12 @@
 package controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.LinkedList;
 import java.util.Queue;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import model.player.Player;
 import model.game.TicTacToe;
 import model.minimax.Minimax;
@@ -56,12 +48,7 @@ public class GameController implements Subscriber, Controller {
         this.game = new TicTacToe();
         game.setPlayers(playersTurn);
         game.board.addSubscriber(this);
-        /*playersTurn = new LinkedList<>();
-        playersTurn.offer(new Human(new Symbol('X')));
-        playersTurn.offer(new Bot(new Symbol('O')));*/
-        playersTurn = game.getPlayers();
         lblTurn.setText(playersTurn.peek().toString());
-        //btnTest.setOnAction(e -> update());
         initBoard();
         if (playersTurn.peek() instanceof Bot) botTurn();
     }
@@ -77,12 +64,10 @@ public class GameController implements Subscriber, Controller {
                 System.out.println("Clic en " + index + " box");
                 
                 if (lblBox.getText().isBlank()){
-                    Player currentPlayer = playersTurn.poll();
-                    
+                    Player currentPlayer = game.getNext();
                     game.getBoard().setSymbol(currentPlayer.getSymbol(), index);
-                    System.out.println(game.board.isFull());
                     lblBox.setText(currentPlayer.getSymbol() + "");
-                    playersTurn.offer(currentPlayer);
+                    
                     lblTurn.setText(currentPlayer.toString());
                     
                     if (playersTurn.peek() instanceof Bot) botTurn();
@@ -93,17 +78,15 @@ public class GameController implements Subscriber, Controller {
     }
     
     private void botTurn(){
-        //if (playersTurn.peek() instanceof Bot) {
-            gpBoard.setDisable(true);
-            Minimax minimax = new Minimax(this.game);
-            int bestMovement = minimax.calculate();
-            Player bot = playersTurn.poll();
-            game.getBoard().setSymbol(bot.getSymbol(), bestMovement);
-            Label name = (Label) gpBoard.getChildren().get(bestMovement);
-            name.setText(bot.getSymbol() + "");
-            playersTurn.offer(bot);
-            gpBoard.setDisable(false);
-        //}
+        gpBoard.setDisable(true);
+        Minimax minimax = new Minimax(this.game);
+        int bestMovement = minimax.calculate();
+        Player bot = game.getNext();
+        game.getBoard().setSymbol(bot.getSymbol(), bestMovement);
+        Label name = (Label) gpBoard.getChildren().get(bestMovement);
+        name.setText(bot.getSymbol() + "");
+        gpBoard.setDisable(false);
+
     }
 
     @Override
@@ -115,26 +98,5 @@ public class GameController implements Subscriber, Controller {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        //popUpResult();
-        
     }
-    
-//    public void popUpResult() {
-//        System.out.println("GANO ALGUIEN");
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("result.fxml"));
-//            Parent root = loader.load();
-//            
-//            /// pasar tictactoe al controlador de resultado
-//
-//            Scene scene = new Scene(root);
-//            Stage stage = new Stage();
-//            stage.setScene(scene);
-//            stage.setTitle("Resultado");
-//            stage.show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
 }

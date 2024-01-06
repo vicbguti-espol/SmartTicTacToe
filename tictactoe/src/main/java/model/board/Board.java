@@ -78,7 +78,6 @@ public class Board {
         Iterator<Box[]>[] iterators = new Iterator[]{this.rowIterator(), this.columnIterator(), this.diagonalIterator()};
         
         for (Iterator<Box[]> it: iterators){
-            System.out.println("Iterator starting");
             while (it.hasNext()){
                 Box[] subBoxes = it.next();
                 if (this.isWinner(symbol, subBoxes)){
@@ -97,8 +96,6 @@ public class Board {
                 count++;
             }
         }
-        System.out.println(Arrays.toString(subBoxes));
-        System.out.println("count: " + count);
         return count == subBoxes.length;
     }
     

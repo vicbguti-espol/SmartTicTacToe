@@ -1,15 +1,24 @@
 package test;
 import model.board.Board;
 import model.board.Symbol;
+import model.game.TicTacToe;
+import model.player.Bot;
+import model.player.Human;
 
 public class BoardTest {
     Board board;
+    TicTacToe game;
     
     BoardTest(){
+        game = new TicTacToe();
+        game.players.add(new Human(new Symbol('X')));
+        game.players.add(new Bot(new Symbol('O')));
         board = new Board();
+        game.board = board;
         board.suscribers.add(()->{
-            System.out.println("ganador: " + board.getWinner());
+            System.out.println("ganador: " + game.getWinner());
         });
+
     }
     
     void setSymbol(){
@@ -20,10 +29,6 @@ public class BoardTest {
         board.setSymbol(new Symbol('X'), 1);
         board.setSymbol(new Symbol('O'), 6);
         System.out.println(board);
-    }
-    
-    void getLastMovement(){
-        System.out.println(board.getLastMovement());
     }
     
     public static void main(String[] args) {

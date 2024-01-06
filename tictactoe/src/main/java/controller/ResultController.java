@@ -23,11 +23,8 @@ public class ResultController implements Controller {
     public void lazyInit() {
         Player winner = ticTacToe.getWinner();
         String result;
-        if (winner != null){
-            result = "Felicidades a " + winner.toString() + "!";
-        } else {
-            result = "Empate";
-        }
+        if (winner != null){result = "Felicidades a " + winner.toString() + "!";} 
+        else { result = "Empate";}
         
         lblResult.setText(result); 
         System.out.println(ticTacToe.board);

@@ -10,9 +10,4 @@ public class Bot extends Player {
         super(symbol);
     }
     
-    @Override
-    public String toString() {
-        return "Computadora";
-    }
-    
 }
