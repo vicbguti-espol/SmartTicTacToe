@@ -16,6 +16,7 @@ public class Board {
     public List<Subscriber> suscribers;
     private Symbol winner;
     private int lastMovement;
+    private int utility;
     
     public Board(){
         suscribers = new LinkedList<>();
@@ -29,6 +30,21 @@ public class Board {
         this();
         for (int i = 0; i < ROWS*COLUMNS; i++){
             boxes[i] = new Box(board.boxes[i]);
+        }
+    }
+    
+    public void map(BoxOperation operation){
+        Iterator<Box[]> rowIterator = this.rowIterator();
+        int i = 0;
+        while (rowIterator.hasNext()){
+            i++;
+            Box[] row = rowIterator.next();
+            for (int j = 0; j < row.length; j++){
+                Box box = row[j];
+                box.setPosX(i);
+                box.setPosY(j);
+                operation.execute(box);
+            }
         }
     }
 
@@ -121,6 +137,14 @@ public class Board {
 
     public Box[] getBoxes() {
         return boxes;
+    }
+
+    public int getUtility() {
+        return utility;
+    }
+
+    public void setUtility(int utility) {
+        this.utility = utility;
     }
     
     @Override

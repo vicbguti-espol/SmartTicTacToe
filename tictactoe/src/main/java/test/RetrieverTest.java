@@ -16,6 +16,8 @@ public class RetrieverTest {
         game = new TicTacToe();
         buildGame();
         optionRetriever = new OptionRetriever(game);
+        game.board.boxes[1].setSymbol(new Symbol('X'));
+        game.board.boxes[4].setSymbol(new Symbol('O'));
     }
     
     private void buildGame(){
@@ -26,7 +28,7 @@ public class RetrieverTest {
     void printTree(){
         optionRetriever.buildTree();
         Tree<Board> tree = optionRetriever.tree;
-        tree.traverse();
+        System.out.println(tree.getRoot());
     }
     
     public static void main(String[] args) {

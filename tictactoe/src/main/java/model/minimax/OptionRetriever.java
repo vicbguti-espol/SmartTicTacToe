@@ -12,7 +12,7 @@ public class OptionRetriever {
     private Player oponent;
     public Tree<Board> tree;
     
-     public OptionRetriever(TicTacToe game){
+    public OptionRetriever(TicTacToe game){
         board = game.getBoard();
         player = game.getPlayer();
         oponent = game.getOponent();

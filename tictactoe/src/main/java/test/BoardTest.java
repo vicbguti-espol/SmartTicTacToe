@@ -6,10 +6,10 @@ import model.player.Bot;
 import model.player.Human;
 
 public class BoardTest {
-    Board board;
+    public Board board;
     TicTacToe game;
     
-    BoardTest(){
+    public BoardTest(){
         game = new TicTacToe();
         game.players.add(new Human(new Symbol('X')));
         game.players.add(new Bot(new Symbol('O')));
