@@ -17,18 +17,18 @@ public class ResultController implements Controller {
     @FXML 
     protected void returnHomePage() throws IOException{
         App.setRoot("home");
+        
     }
 
     @Override
     public void lazyInit() {
         Player winner = ticTacToe.getWinner();
+        winner.setWins(winner.getWins() + 1);
         String result;
         if (winner != null){result = "Felicidades a " + winner.toString() + "!";} 
         else { result = "Empate";}
         
         lblResult.setText(result); 
-        System.out.println(ticTacToe.board);
-        System.out.println(result);
     }
     
 }

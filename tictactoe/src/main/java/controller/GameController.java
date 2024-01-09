@@ -17,6 +17,10 @@ public class GameController implements Subscriber, Controller {
     private Label lblTurn;
     @FXML
     private GridPane gpBoard;
+    @FXML
+    private Label lblP1;
+    @FXML
+    private Label lblP2;
     
     private Queue<Player> playersTurn;
     
@@ -45,15 +49,22 @@ public class GameController implements Subscriber, Controller {
     public void lazyInit() {
         btnMovement.setDisable(true);
         this.playersTurn = turnController.qPlayers;
+        System.out.println(playersTurn);
         this.game = new TicTacToe();
         game.setPlayers(playersTurn);
         game.board.addSubscriber(this);
-        lblTurn.setText(playersTurn.peek().toString());
         this.drawBoard();
         if (playersTurn.peek() instanceof Bot) botTurn();
     }
     
     public void drawBoard(){
+        Player p1 = game.getNext();
+        Player p2 = game.getNext();
+        lblP1.setText(p1.toString() + " " + p1.wins);
+        lblP2.setText(p2.toString() + " " + p2.wins);
+
+        
+        lblTurn.setText(playersTurn.peek().toString());
         gpBoard.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
         
         for (int i = 0; i < gpBoard.getChildren().size(); i++){
@@ -79,6 +90,7 @@ public class GameController implements Subscriber, Controller {
     
     
     private void botTurn(){
+        System.out.println(playersTurn);
         gpBoard.setDisable(true);
         Minimax minimax = new Minimax(this.game);
         int bestMovement = minimax.calculate();
@@ -104,7 +116,7 @@ public class GameController implements Subscriber, Controller {
         Label name = (Label) gpBoard.getChildren().get(bestMovement);
         name.setText(bot.getSymbol() + "");
         gpBoard.setDisable(false);
-
+        System.out.println(playersTurn);
     }
     
     @FXML

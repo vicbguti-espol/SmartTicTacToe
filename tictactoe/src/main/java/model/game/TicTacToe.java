@@ -8,6 +8,8 @@ import model.player.Player;
 
 public class TicTacToe {
     public Queue<Player> players;
+    public Player player;
+    public Player oponent;
     public Board board;
     
     public TicTacToe(){
@@ -21,6 +23,8 @@ public class TicTacToe {
 
     public void setPlayers(Queue<Player> players) {
         this.players = players;
+        player = this.getPlayer();
+        oponent = this.getOponent();
     }
     
     

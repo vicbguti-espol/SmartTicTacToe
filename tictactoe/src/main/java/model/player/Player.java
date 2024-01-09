@@ -4,11 +4,13 @@ import model.board.Symbol;
 
 public abstract class Player {
     protected Symbol symbol;
+    public int wins;
     
     public Player(){}
 
     public Player(Symbol symbol) {
         this.symbol = symbol;
+        this.wins = 0;
     }
 
     public Symbol getSymbol() {
@@ -17,6 +19,14 @@ public abstract class Player {
     
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 
     @Override

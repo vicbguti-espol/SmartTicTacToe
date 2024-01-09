@@ -16,8 +16,9 @@ public class Minimax {
     public Minimax(TicTacToe game) {
         this.game = game;
         this.board = game.getBoard();
-        this.player = game.getPlayer();
-        this.oponent = game.getOponent();
+        this.player = game.player;
+        this.oponent = game.oponent;
+        System.out.println(player + "" + oponent);
     }
     
     public int calculate() {
