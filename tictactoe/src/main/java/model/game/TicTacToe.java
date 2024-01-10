@@ -7,6 +7,7 @@ import model.board.Symbol;
 import model.player.Player;
 
 public class TicTacToe {
+    public Player[] initPlayers;
     public Queue<Player> players;
     public Player player;
     public Player oponent;

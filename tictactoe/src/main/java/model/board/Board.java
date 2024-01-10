@@ -17,6 +17,7 @@ public class Board {
     private Symbol winner;
     private int lastMovement;
     private int utility;
+    public boolean hasEnded;
     
     public Board(){
         suscribers = new LinkedList<>();
@@ -58,6 +59,7 @@ public class Board {
         
         if (this.isWinner(symbol) || this.isFull()){
             this.notifySuscribers();
+            this.hasEnded = true;
         }
     }
     

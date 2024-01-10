@@ -1,18 +1,21 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Queue;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import model.player.Player;
 import model.game.TicTacToe;
 import model.minimax.Minimax;
 import model.player.Bot;
-import view.BoardView;
 
-public class GameController implements Subscriber, Controller {
+public class GameController implements Subscriber, Controller, Initializable {
     @FXML
     private Label lblTurn;
     @FXML
@@ -22,49 +25,40 @@ public class GameController implements Subscriber, Controller {
     @FXML
     private Label lblP2;
     
-    private Queue<Player> playersTurn;
-    
     public TicTacToe game;
-    
-    TurnController turnController; 
-    
+
     @FXML
     private Button btnMovement;
-    
-    private BoardView boardView;
 
-    public GameController(){
-        
-    }
+    public GameController(){}
     
-    public GameController(TurnController aThis) {
-        this.turnController = aThis;
-    }
-    
-    public void setTurnController(TurnController aThis) {
-        this.turnController = aThis;
+    public GameController(TicTacToe game){
+        this.game = game;
     }
     
     @Override
     public void lazyInit() {
-        btnMovement.setDisable(true);
-        this.playersTurn = turnController.qPlayers;
-        System.out.println(playersTurn);
-        this.game = new TicTacToe();
-        game.setPlayers(playersTurn);
         game.board.addSubscriber(this);
+        btnMovement.setDisable(true);
+        // this.playersTurn = turnController.qPlayers;
+        // System.out.println(playersTurn);
+        // this.game = new TicTacToe();
+        // game.setPlayers(playersTurn);
         this.drawBoard();
-        if (playersTurn.peek() instanceof Bot) botTurn();
+        while (game.players.peek() instanceof Bot && !game.board.hasEnded){
+            botTurn();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        } 
+        // if (game.players.peek() instanceof Bot) botTurn();
     }
     
-    public void drawBoard(){
-        Player p1 = game.getNext();
-        Player p2 = game.getNext();
-        lblP1.setText(p1.toString() + " " + p1.wins);
-        lblP2.setText(p2.toString() + " " + p2.wins);
-
-        
-        lblTurn.setText(playersTurn.peek().toString());
+    public void drawBoard(){ 
+        System.out.println(game.players);
+        lblTurn.setText(game.players.peek().toString());
         gpBoard.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
         
         for (int i = 0; i < gpBoard.getChildren().size(); i++){
@@ -82,7 +76,7 @@ public class GameController implements Subscriber, Controller {
                     
                     lblTurn.setText(currentPlayer.toString());
                     
-                    if (playersTurn.peek() instanceof Bot) botTurn();
+                    if (game.players.peek() instanceof Bot) botTurn();
                 }
             });
         }
@@ -90,7 +84,6 @@ public class GameController implements Subscriber, Controller {
     
     
     private void botTurn(){
-        System.out.println(playersTurn);
         gpBoard.setDisable(true);
         Minimax minimax = new Minimax(this.game);
         int bestMovement = minimax.calculate();
@@ -116,16 +109,16 @@ public class GameController implements Subscriber, Controller {
         Label name = (Label) gpBoard.getChildren().get(bestMovement);
         name.setText(bot.getSymbol() + "");
         gpBoard.setDisable(false);
-        System.out.println(playersTurn);
     }
     
     @FXML
     void returnHome() throws IOException{
-        App.setRoot("home");
+        App.setRoot("choose");
     }
 
     @Override
     public void update() {
+        System.out.println(game.board);
         gpBoard.setDisable(true);
         btnMovement.setDisable(true);
         try {
@@ -133,5 +126,11 @@ public class GameController implements Subscriber, Controller {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        
     }
 }

@@ -18,7 +18,6 @@ public class Minimax {
         this.board = game.getBoard();
         this.player = game.player;
         this.oponent = game.oponent;
-        System.out.println(player + "" + oponent);
     }
     
     public int calculate() {
