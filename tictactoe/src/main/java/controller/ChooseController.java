@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import model.board.Symbol;
 import model.game.ComputerComputer;
@@ -69,6 +68,7 @@ public class ChooseController implements Initializable {
             }
             
             cmbSymbol1.setOnAction(ep -> {
+                
                 if (cmbModes.getValue() instanceof HumanComputer){
                     Symbol s1 = (Symbol) cmbSymbol1.getValue();
                     cmbSymbol2.getItems().remove(s1);

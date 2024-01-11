@@ -1,42 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="634.0" spacing="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseController">
    <children>
-      <Label text="Tic Tac Toe" />
-      <HBox prefHeight="5.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="1.0" prefWidth="540.0">
          <children>
-            <Label fx:id="lblOption" text="Modo de Juego" />
-            <ComboBox fx:id="cmbModes" prefWidth="150.0" />
+            <Label alignment="CENTER" text="Tic Tac Toe">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
-      <HBox prefHeight="0.0" prefWidth="600.0">
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <HBox prefHeight="232.0" prefWidth="267.0">
-               <children>
-                  <Label text="Jugador 1" />
-                  <ComboBox fx:id="cmbSymbol1" prefWidth="150.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="16.0" prefWidth="240.0">
-               <children>
-                  <Label text="Jugador 2" />
-                  <ComboBox fx:id="cmbSymbol2" prefWidth="150.0" />
-               </children>
-            </HBox>
+            <Label fx:id="lblOption" prefHeight="24.0" prefWidth="163.0" text="Modo de Juego">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <ComboBox fx:id="cmbModes" prefWidth="150.0" GridPane.columnIndex="1" />
+            <Label prefHeight="24.0" prefWidth="102.0" text="Jugador 1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbSymbol1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="24.0" prefWidth="116.0" text="Jugador 2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbSymbol2" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="¿Quien inicia?" GridPane.rowIndex="3">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <ComboBox fx:id="cmbFirst" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="10.0" prefWidth="600.0" spacing="30.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#startGame" text="Empezar">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
-      <HBox prefHeight="10.0" prefWidth="600.0">
-         <children>
-            <Label text="¿Quien inicia?" />
-            <ComboBox fx:id="cmbFirst" prefWidth="150.0" />
-         </children>
-      </HBox>
-      <Button mnemonicParsing="false" onAction="#startGame" text="Empezar" />
    </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
 </VBox>

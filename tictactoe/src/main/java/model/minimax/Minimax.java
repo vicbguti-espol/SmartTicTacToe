@@ -56,8 +56,8 @@ public class Minimax {
     }
     
     private int calculateUtility(Board board) {
-        return calculatePlayerWeight(board, this.player) 
-                - calculatePlayerWeight(board, this.oponent);
+        return - calculatePlayerWeight(board, this.player) 
+                + calculatePlayerWeight(board, this.oponent);
     }
     
     private int calculatePlayerWeight(Board board, Player player) {

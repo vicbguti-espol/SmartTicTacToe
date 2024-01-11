@@ -2,62 +2,36 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Queue;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import model.game.ComputerComputer;
 import model.player.Player;
 import model.game.TicTacToe;
 import model.minimax.Minimax;
 import model.player.Bot;
 
-public class GameController implements Subscriber, Controller, Initializable {
+public class GameController implements Subscriber, Initializable {
     @FXML
     private Label lblTurn;
     @FXML
     private GridPane gpBoard;
     @FXML
-    private Label lblP1;
-    @FXML
-    private Label lblP2;
+    private Button btnMovement;
     
     public TicTacToe game;
-
-    @FXML
-    private Button btnMovement;
-
+    
     public GameController(){}
     
     public GameController(TicTacToe game){
         this.game = game;
     }
     
-    @Override
-    public void lazyInit() {
-        game.board.addSubscriber(this);
-        btnMovement.setDisable(true);
-        // this.playersTurn = turnController.qPlayers;
-        // System.out.println(playersTurn);
-        // this.game = new TicTacToe();
-        // game.setPlayers(playersTurn);
-        this.drawBoard();
-        while (game.players.peek() instanceof Bot && !game.board.hasEnded){
-            botTurn();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        } 
-        // if (game.players.peek() instanceof Bot) botTurn();
-    }
-    
-    public void drawBoard(){ 
-        System.out.println(game.players);
+    public void drawBoard(){
         lblTurn.setText(game.players.peek().toString());
         gpBoard.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
         
@@ -67,8 +41,6 @@ public class GameController implements Subscriber, Controller, Initializable {
             final int index = i;
             lblBox.setText(game.board.boxes[i].toString());
             lblBox.setOnMouseClicked(eh -> {
-                System.out.println("Clic en " + index + " box");
-                
                 if (lblBox.getText().isBlank()){
                     Player currentPlayer = game.getNext();
                     game.getBoard().setSymbol(currentPlayer.getSymbol(), index);
@@ -76,7 +48,7 @@ public class GameController implements Subscriber, Controller, Initializable {
                     
                     lblTurn.setText(currentPlayer.toString());
                     
-                    if (game.players.peek() instanceof Bot) botTurn();
+                    if (!game.board.hasEnded && game.players.peek() instanceof Bot) botTurn();
                 }
             });
         }
@@ -84,12 +56,11 @@ public class GameController implements Subscriber, Controller, Initializable {
     
     
     private void botTurn(){
+        Player bot = game.getNext();
+        
         gpBoard.setDisable(true);
         Minimax minimax = new Minimax(this.game);
         int bestMovement = minimax.calculate();
-        Player bot = game.getNext();
-        
-        
         
         game.getBoard().setSymbol(bot.getSymbol(), bestMovement);
         btnMovement.setDisable(false);
@@ -103,11 +74,9 @@ public class GameController implements Subscriber, Controller, Initializable {
             }
         });
         
-        
-        
-        
         Label name = (Label) gpBoard.getChildren().get(bestMovement);
         name.setText(bot.getSymbol() + "");
+        
         gpBoard.setDisable(false);
     }
     
@@ -118,7 +87,6 @@ public class GameController implements Subscriber, Controller, Initializable {
 
     @Override
     public void update() {
-        System.out.println(game.board);
         gpBoard.setDisable(true);
         btnMovement.setDisable(true);
         try {
@@ -130,7 +98,34 @@ public class GameController implements Subscriber, Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.game.board.addSubscriber(this);
+        this.btnMovement.setDisable(true);
+        this.drawBoard();
         
+        if (game.players.peek() instanceof Bot) botTurn();
         
+        if (this.game instanceof ComputerComputer){
+            btnMovement.setDisable(true);
+            Thread taskThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+              while(!game.board.hasEnded){
+                try {
+                  Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                  e.printStackTrace();
+                }
+                Platform.runLater(new Runnable() {
+                  @Override
+                  public void run() {
+                    botTurn();
+                  }
+                });
+              }
+            }
+          });
+
+          taskThread.start();
+        }
     }
 }

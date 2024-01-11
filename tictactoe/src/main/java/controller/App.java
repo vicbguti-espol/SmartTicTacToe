@@ -14,10 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // scene = new Scene(loadFXML("home"), 640, 480);
-        scene = new Scene(loadFXML("choose"), 640, 480);
-        // scene = new Scene(loadFXML("tree"), 600, 600);
-        
+        scene = new Scene(loadFXML("choose"), 1200, 560);
         stage.setScene(scene);
         stage.show();
     }
@@ -26,9 +23,8 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     
-    static void setRoot(String fxml, Controller controller) throws IOException {
+    static void setRoot(String fxml, Object controller) throws IOException {
         scene.setRoot(loadFXML(fxml, controller));
-        controller.lazyInit();
     }
     
     public static Parent loadFXML(String fxml) throws IOException {
@@ -36,7 +32,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
-    public static Parent loadFXML(String fxml, Controller controller) throws IOException {
+    public static Parent loadFXML(String fxml, Object controller) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         fxmlLoader.setController(controller);
         return fxmlLoader.load();

@@ -16,14 +16,17 @@ public class OptionRetriever {
         board = game.getBoard();
         player = game.getPlayer();
         oponent = game.getOponent();
-        tree = new Tree<>(board);
+        tree = new Tree<>(new Board(board));
+        
+        System.out.println(player);
+        System.out.println(oponent);
     }
     
     public void buildTree(){
-        useBoard(board, player, tree);
+        useBoard(board, oponent, tree);
         
         for (Tree dTree: tree.getChildren()){
-            useBoard((Board) dTree.getContent(), oponent, dTree);
+            useBoard((Board) dTree.getContent(), player, dTree);
         }
     }
     

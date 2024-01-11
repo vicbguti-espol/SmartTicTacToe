@@ -20,6 +20,7 @@ public class Board {
     public boolean hasEnded;
     
     public Board(){
+        hasEnded = false;
         suscribers = new LinkedList<>();
         boxes = new Box[ROWS*COLUMNS];
         for (int i = 0; i < ROWS*COLUMNS; i++){

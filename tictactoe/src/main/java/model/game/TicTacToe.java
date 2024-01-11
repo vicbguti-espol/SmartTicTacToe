@@ -26,6 +26,7 @@ public class TicTacToe {
         this.players = players;
         player = this.getPlayer();
         oponent = this.getOponent();
+
     }
     
     

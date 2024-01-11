@@ -9,22 +9,43 @@ public class BoardView {
     public Board board;
     public VBox vBox;
     public GridPane gridPane;
+    private boolean utility;
     
     public BoardView(Board board){
-        vBox = new VBox();
-        gridPane = new GridPane();
-        gridPane.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
-        
+        this.board = board;
+        System.out.println(board);
+        // this.vBox = new VBox();
+        // this.gridPane = new GridPane();
+        // this.utility = true;
+        // this.buildGrid();
+    }
+
+    public void setGridPane(GridPane gridPane) {
+        for (int i = 0; i < gridPane.getChildren().size() - 1; i++){
+            Label lblBox = (Label) gridPane.getChildren().get(i);
+            lblBox.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
+            lblBox.setText(board.boxes[i].toString());   
+        }
+    }
+    
+    public void buildGrid(){
         board.map((box) -> {
             Label lblBox = new Label(box.toString()); 
-            // lblBox.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
             gridPane.add(lblBox, 
                     box.getPosY(), 
                     box.getPosX());
         });
         
+        vBox.getChildren().clear();
         vBox.getChildren().add(gridPane);
-        vBox.getChildren().add(new Label(String.valueOf(board.getUtility())));
+        
+        if (utility){
+            vBox.getChildren().add(new Label(String.valueOf(board.getUtility())));
+        }
+    }
+
+    public void setUtility(boolean utility) {
+        this.utility = utility;
     }
     
     

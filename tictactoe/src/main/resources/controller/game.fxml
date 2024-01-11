@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <GridPane fx:id="gpBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="gpBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="293.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -74,10 +74,13 @@
       </GridPane>
    </center>
    <bottom>
-      <Button fx:id="btnMovement" mnemonicParsing="false" text="Why bot last movement?" BorderPane.alignment="CENTER">
+      <Button fx:id="btnMovement" mnemonicParsing="false" text="¿Por qué Bot tomó esa decisión?" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
+         <font>
+            <Font size="16.0" />
+         </font>
       </Button>
    </bottom>
    <top>
@@ -85,7 +88,10 @@
          <children>
             <HBox alignment="CENTER_LEFT">
                <children>
-                  <Button mnemonicParsing="false" onAction="#returnHome" text="Home" />
+                  <Button mnemonicParsing="false" onAction="#returnHome" text="Home">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -93,8 +99,14 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="Turno de " />
-                  <Label fx:id="lblTurn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="Player" />
+                  <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="Turno de ">
+                     <font>
+                        <Font size="25.0" />
+                     </font></Label>
+                  <Label fx:id="lblTurn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="Player">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font></Label>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -103,4 +115,7 @@
          </children>
       </VBox>
    </top>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
 </BorderPane>

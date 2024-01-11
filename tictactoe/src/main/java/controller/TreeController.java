@@ -6,23 +6,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.board.Board;
-import view.BoardView;
 
-public class TreeController implements Controller, Initializable {
+public class TreeController implements Initializable {
     @FXML
     VBox root;
     @FXML
     HBox parentHBox;
     @FXML
-    HBox childrenVBox;
+    HBox childrenHBox;
     
     Tree<Board> tree;
     
     String returnFXML;
-    Controller returnController;
+    Object returnController;
     
     public TreeController(Tree<Board> tree){
         this.tree = tree;
@@ -30,26 +31,36 @@ public class TreeController implements Controller, Initializable {
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        parentHBox.getChildren().add(new BoardView(tree.getContent()).vBox);
+        VBox parentVBox = (VBox) parentHBox.getChildren().get(0);
+        GridPane parentGrid = (GridPane) parentVBox.getChildren().get(0);
+        Label utility = (Label) parentVBox.getChildren().get(1);
         
-        for (Tree<Board> subTree: tree.getChildren()){
-            VBox vbox = new BoardView(subTree.getContent()).vBox;
-            vbox.setOnMouseClicked(eh -> {
-                TreeController controller = new TreeController(subTree);
-                controller.setReturnController("tree", this);
-                try {
-                    App.setRoot("tree", controller);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-            childrenVBox.getChildren().add(vbox);
-        } 
+        Board rootBoard = tree.getContent();
+        utility.setText("Utilidad: " + rootBoard.getUtility());
+        
+        this.crowd(parentGrid, rootBoard);
+        
+        for (int i = 0; i < tree.getChildren().size(); i++){
+            VBox childVBox = (VBox) childrenHBox.getChildren().get(i);
+            GridPane childGrid = (GridPane) childVBox.getChildren().get(0);
+            Label childUtility = (Label) childVBox.getChildren().get(1);
+            
+            Board childBoard = tree.getChildren().get(i).getContent();
+            childUtility.setText("Utilidad: " + childBoard.getUtility());
+            
+            this.crowd(childGrid, childBoard);
+        }
     }
-
-    @Override
-    public void lazyInit() {
-        
+    
+    private void crowd(GridPane grid, Board board){;
+        for (int j = 0; j < grid.getChildren().size(); j++){
+            if (grid.getChildren().get(j) instanceof Label){
+                Label lblBox = (Label) grid.getChildren().get(j) ;
+                lblBox.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
+                lblBox.setText(board.boxes[j].toString());
+            }
+                
+        }
     }
     
     @FXML
@@ -62,7 +73,7 @@ public class TreeController implements Controller, Initializable {
         
     }
     
-    public void setReturnController(String returnFXML, Controller returnController){
+    public void setReturnController(String returnFXML, Object returnController){
         this.returnFXML = returnFXML;
         this.returnController = returnController;
     } 
