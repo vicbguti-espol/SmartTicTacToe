@@ -8,11 +8,11 @@ package model.game;
  *
  * @author vicbguti
  */
-public class Medium extends HumanComputer {
+public class Easy extends HumanComputer {
 
     @Override
     public String toString() {
-        return "Medium{" + '}';
+        return super.toString() + " (Fácil)";
     }
     
 }

@@ -49,6 +49,7 @@ public class Board {
             }
         }
     }
+    
 
     public void setSymbol(Symbol symbol, int arrayIndex){
         boxes[arrayIndex].setSymbol(symbol);
@@ -136,6 +137,24 @@ public class Board {
             if (box.isEmpty()){
                 return false;
             }
+        }
+        return true;
+    }
+    
+    public boolean contains(Symbol symbol){
+        for (Box box: boxes){
+            if (box.getSymbol().equals(symbol)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean isEmpty(){
+        for (Box box: boxes){
+            if (!box.isEmpty()){
+                return false;
+            } 
         }
         return true;
     }

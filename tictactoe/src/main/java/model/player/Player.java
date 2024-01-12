@@ -29,6 +29,15 @@ public abstract class Player {
         this.wins = wins;
     }
 
+    public String getColor() {
+        return symbol.getColor();
+    }
+
+    public void setColor(String color) {
+        symbol.setColor(color);
+    }
+
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

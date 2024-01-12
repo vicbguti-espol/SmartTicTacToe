@@ -1,0 +1,46 @@
+/**
+navy: #363062
+purple: #4D4C7D
+orange: #F99417
+white: #F5F5F5
+**/
+
+.background {
+    -fx-background-color: #F5F5F5;
+}
+
+.button {
+    -fx-background-color: #4D4C7D;
+    -fx-text-fill: #F5F5F5;
+}
+
+.board{
+    -fx-border-color: #363062; 
+    -fx-border-width: 1px;
+}
+
+.box{
+    -fx-border-color: #363062;
+    -fx-border-width: 2px;
+}
+
+.shadow {
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0,10.0);
+}
+
+.title{
+    -fx-text-fill: #363062;
+}
+
+.text{
+    -fx-text-fill: #363062;
+}
+
+.combo-box{
+    -fx-background-color: #4D4C7D;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #4D4C7D;
+    -fx-text-fill: #F5F5F5;
+}

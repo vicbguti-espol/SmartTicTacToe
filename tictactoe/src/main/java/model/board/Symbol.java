@@ -4,9 +4,26 @@ import java.util.Objects;
 
 public class Symbol {
     Character character;
+    String color;
 
     public Symbol(Character character) {
         this.character = character;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @Override

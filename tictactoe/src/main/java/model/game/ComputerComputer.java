@@ -12,7 +12,7 @@ public class ComputerComputer extends TicTacToe {
 
     @Override
     public String toString() {
-        return "ComputerComputer{" + '}';
+        return "Computadora VS Computadora";
     }
     
     

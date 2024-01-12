@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import model.board.Box;
 import model.game.ComputerComputer;
+import model.game.HumanComputer;
 import model.player.Player;
 import model.game.TicTacToe;
 import model.minimax.Minimax;
@@ -22,8 +24,8 @@ public class GameController implements Subscriber, Initializable {
     private GridPane gpBoard;
     @FXML
     private Button btnMovement;
-    
     public TicTacToe game;
+    private Minimax minimax;
     
     public GameController(){}
     
@@ -32,38 +34,59 @@ public class GameController implements Subscriber, Initializable {
     }
     
     public void drawBoard(){
-        lblTurn.setText(game.players.peek().toString());
-        gpBoard.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+        setTurnLabel(game.players.peek());
         
         for (int i = 0; i < gpBoard.getChildren().size(); i++){
             Label lblBox = (Label) gpBoard.getChildren().get(i);
-            lblBox.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
             final int index = i;
-            lblBox.setText(game.board.boxes[i].toString());
+            final Box box = game.board.boxes[i];
+            setSymbol(lblBox, box);
             lblBox.setOnMouseClicked(eh -> {
                 if (lblBox.getText().isBlank()){
                     Player currentPlayer = game.getNext();
-                    game.getBoard().setSymbol(currentPlayer.getSymbol(), index);
-                    lblBox.setText(currentPlayer.getSymbol() + "");
-                    
-                    lblTurn.setText(game.players.peek().toString());
-                    
+                    setSymbol(currentPlayer, index, lblBox);
+                    setTurnLabel(game.players.peek());
                     if (game.players.peek() instanceof Bot) botTurn();
                 }
             });
         }
     }
+
+    private void setSymbol(Label lblBox, final Box box) {
+        if (box.symbol == null) return;
+        lblBox.setStyle(lblBox.getStyle() + "-fx-text-fill:" + box.symbol.getColor());
+        lblBox.setText(box.toString());
+    }
+
+    private void setSymbol(Player currentPlayer, final int index, Label lblBox) {
+        game.getBoard().setSymbol(currentPlayer.getSymbol(), index);
+        lblBox.setStyle(lblBox.getStyle() + "-fx-text-fill:" + currentPlayer.getColor());
+        lblBox.setText(currentPlayer.getSymbol() + "");
+    }
+
+    private void setTurnLabel(Player player) {
+        lblTurn.setStyle("-fx-text-fill:" + player.getColor());
+        lblTurn.setText(player.toString());
+    }
     
     
     private void botTurn(){
         Player bot = game.getNext();
+        setTurnLabel(game.players.peek());
         
         gpBoard.setDisable(true);
-        Minimax minimax = new Minimax(this.game);
-        int bestMovement = minimax.calculate();
-        
-        game.getBoard().setSymbol(bot.getSymbol(), bestMovement);
         btnMovement.setDisable(false);
+        
+        minimax = new Minimax(this.game);
+        iBtnMovement();
+        
+        int bestMovement = minimax.calculate();
+        Label name = (Label) gpBoard.getChildren().get(bestMovement);
+        setSymbol(bot, bestMovement, name);
+        gpBoard.setDisable(false);
+    }
+
+    private void iBtnMovement() {
         btnMovement.setOnAction(e -> {
             TreeController controller = new TreeController(minimax.options);
             controller.setReturnController("game", this);
@@ -73,12 +96,8 @@ public class GameController implements Subscriber, Initializable {
                 ex.printStackTrace();
             }
         });
-        
-        Label name = (Label) gpBoard.getChildren().get(bestMovement);
-        name.setText(bot.getSymbol() + "");
-        
-        gpBoard.setDisable(false);
     }
+    
     
     @FXML
     void returnHome() throws IOException{
@@ -98,11 +117,22 @@ public class GameController implements Subscriber, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        final boolean nextBot = game.players.peek() instanceof Bot;
         this.game.board.addSubscriber(this);
-        this.btnMovement.setDisable(true);
-        this.drawBoard();
         
-        if (game.players.peek() instanceof Bot) botTurn();
+        
+        if (game instanceof HumanComputer){
+            if (!game.board.isEmpty()){
+                btnMovement.setDisable(false);
+                iBtnMovement();
+            } else{
+                btnMovement.setDisable(true);
+            }
+        }
+        
+        
+        this.drawBoard();
+        if (nextBot) botTurn();
         
         if (this.game instanceof ComputerComputer){
             btnMovement.setDisable(true);

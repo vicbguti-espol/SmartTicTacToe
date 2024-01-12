@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import model.board.Board;
+import model.board.Box;
 import model.game.TicTacToe;
 import model.player.Player;
 
@@ -40,15 +41,19 @@ public class ResultController implements Initializable {
         this.crowd(gpBoard, ticTacToe.board);
     }
     
-    private void crowd(GridPane grid, Board board){;
-        for (int j = 0; j < grid.getChildren().size(); j++){
-            if (grid.getChildren().get(j) instanceof Label){
-                Label lblBox = (Label) grid.getChildren().get(j) ;
-                lblBox.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
-                lblBox.setText(board.boxes[j].toString());
+    protected void crowd(GridPane grid, Board board) {
+        for (int j = 0; j < grid.getChildren().size(); j++) {
+            final Box box = board.boxes[j];
+            if (grid.getChildren().get(j) instanceof Label) {
+                Label lblBox = (Label) grid.getChildren().get(j);
+                setSymbol(lblBox, box);
             }
-                
         }
     }
-    
+
+    private void setSymbol(Label lblBox, final Box box) {
+        if (box.symbol == null) return;
+        lblBox.setStyle(lblBox.getStyle() + "-fx-text-fill:" + box.symbol.getColor());
+        lblBox.setText(box.toString());
+    }    
 }

@@ -12,7 +12,7 @@ public class Impossible extends HumanComputer {
 
     @Override
     public String toString() {
-        return "Impossible{" + '}';
+        return super.toString() + " (Imposible)";
     }
     
 }

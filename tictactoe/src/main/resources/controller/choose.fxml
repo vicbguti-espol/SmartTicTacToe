@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="634.0" spacing="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="634.0" spacing="30.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseController">
    <children>
       <HBox alignment="CENTER" prefHeight="1.0" prefWidth="540.0">
          <children>
-            <Label alignment="CENTER" text="Tic Tac Toe">
+            <Label alignment="CENTER" styleClass="title" stylesheets="@../styles/styles.css" text="Tic Tac Toe">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <GridPane>
+      <GridPane stylesheets="@../styles/styles.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,33 +34,33 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lblOption" prefHeight="24.0" prefWidth="163.0" text="Modo de Juego">
+            <Label fx:id="lblOption" prefHeight="24.0" prefWidth="163.0" styleClass="text" text="Modo de Juego">
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <ComboBox fx:id="cmbModes" prefWidth="150.0" GridPane.columnIndex="1" />
-            <Label prefHeight="24.0" prefWidth="102.0" text="Jugador 1" GridPane.rowIndex="1">
+            <ComboBox fx:id="cmbModes" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" />
+            <Label prefHeight="24.0" prefWidth="102.0" styleClass="text" text="Jugador 1" GridPane.rowIndex="1">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSymbol1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="24.0" prefWidth="116.0" text="Jugador 2" GridPane.rowIndex="2">
+            <ComboBox fx:id="cmbSymbol1" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="24.0" prefWidth="116.0" styleClass="text" text="Jugador 2" GridPane.rowIndex="2">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSymbol2" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="¿Quien inicia?" GridPane.rowIndex="3">
+            <ComboBox fx:id="cmbSymbol2" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label styleClass="text" text="¿Quien inicia?" GridPane.rowIndex="3">
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <ComboBox fx:id="cmbFirst" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbFirst" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="10.0" prefWidth="600.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#startGame" text="Empezar">
+            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#startGame" text="Empezar">
                <font>
                   <Font size="16.0" />
                </font>

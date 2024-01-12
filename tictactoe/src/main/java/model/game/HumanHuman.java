@@ -11,7 +11,7 @@ public class HumanHuman extends TicTacToe {
 
     @Override
     public String toString() {
-        return "HumanHuman{" + '}';
+        return "Humano VS Humano";
     }
     
     
