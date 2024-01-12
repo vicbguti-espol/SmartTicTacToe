@@ -55,6 +55,12 @@ public class ChooseController implements Initializable {
             if (cmbModes.getValue() instanceof HumanHuman){
                 cmbSymbol1.setDisable(false);
                 cmbSymbol2.setDisable(false);
+                
+                cmbSymbol2.setOnAction(eh -> {
+                    if (cmbSymbol1.getValue() != null){
+                        initCmbFirst();
+                    }
+                });
             }            
             
             if (cmbModes.getValue() instanceof ComputerComputer){
@@ -76,27 +82,7 @@ public class ChooseController implements Initializable {
                 }
                 
                 if (cmbSymbol2.getValue() != null){
-                    game = (TicTacToe) cmbModes.getValue();
-                    
-                    Player p1 = game.players.poll();
-                    Player p2 = game.players.poll();
-
-                    p1.setSymbol((Symbol) cmbSymbol1.getValue());
-                    p2.setSymbol((Symbol) cmbSymbol2.getValue());
-
-                    cmbFirst.getItems().add(p1);
-                    cmbFirst.getItems().add(p2);
-                    
-                    cmbFirst.setOnAction(el -> {
-                        if (cmbFirst.getValue() != null){
-                            cmbFirst.setDisable(true);
-                            game.players.offer((Player) cmbFirst.getValue());
-                            List<Player> copy = new ArrayList<>(cmbFirst.getItems());
-                            copy.remove(cmbFirst.getValue());
-                            game.players.offer(copy.get(0));
-                        } 
-                    });
-                    cmbFirst.setDisable(false);
+                    initCmbFirst();
                 }
                 
             });
@@ -104,6 +90,32 @@ public class ChooseController implements Initializable {
                 
         });
         
+    }
+
+    private void initCmbFirst() {
+        cmbFirst.getItems().clear();
+        game = (TicTacToe) cmbModes.getValue();
+        
+        Player p1 = game.getPlayer();
+        Player p2 = game.getOponent();
+        
+        p1.setSymbol((Symbol) cmbSymbol1.getValue());
+        p2.setSymbol((Symbol) cmbSymbol2.getValue());
+        
+        cmbFirst.getItems().add(p1);
+        cmbFirst.getItems().add(p2);
+        
+        cmbFirst.setOnAction(el -> {
+            game.players.clear();
+            if (cmbFirst.getValue() != null){
+                cmbFirst.setDisable(true);
+                game.players.offer((Player) cmbFirst.getValue());
+                List<Player> copy = new ArrayList<>(cmbFirst.getItems());
+                copy.remove(cmbFirst.getValue());
+                game.players.offer(copy.get(0));
+            }
+        });
+        cmbFirst.setDisable(false);
     }
     
     @FXML

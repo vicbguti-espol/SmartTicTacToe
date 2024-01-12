@@ -53,14 +53,17 @@ public class Board {
     public void setSymbol(Symbol symbol, int arrayIndex){
         boxes[arrayIndex].setSymbol(symbol);
         setLastMovement(arrayIndex);
+        
+        final boolean isWinner = this.isWinner(symbol);
+        final boolean isFull = this.isFull();
        
-        if (this.isWinner(symbol)){
+        if (isWinner){
             this.winner = symbol;
         }
         
-        if (this.isWinner(symbol) || this.isFull()){
-            this.notifySuscribers();
+        if (isWinner || isFull){
             this.hasEnded = true;
+            this.notifySuscribers();
         }
     }
     
@@ -129,13 +132,12 @@ public class Board {
     }
     
     public boolean isFull(){
-        int i = 0;
-        Box box = boxes[i];
-        while(!box.isEmpty() && i < ROWS*COLUMNS - 1){ 
-            box = boxes[i++];
+        for (Box box: boxes){
+            if (box.isEmpty()){
+                return false;
+            }
         }
-        
-        return i == ROWS*COLUMNS;
+        return true;
     }
 
     public Box[] getBoxes() {

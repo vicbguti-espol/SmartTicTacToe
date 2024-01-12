@@ -46,9 +46,9 @@ public class GameController implements Subscriber, Initializable {
                     game.getBoard().setSymbol(currentPlayer.getSymbol(), index);
                     lblBox.setText(currentPlayer.getSymbol() + "");
                     
-                    lblTurn.setText(currentPlayer.toString());
+                    lblTurn.setText(game.players.peek().toString());
                     
-                    if (!game.board.hasEnded && game.players.peek() instanceof Bot) botTurn();
+                    if (game.players.peek() instanceof Bot) botTurn();
                 }
             });
         }

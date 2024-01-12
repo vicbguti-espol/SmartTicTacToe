@@ -10,7 +10,6 @@ import javafx.scene.layout.GridPane;
 import model.board.Board;
 import model.game.TicTacToe;
 import model.player.Player;
-import view.BoardView;
 
 public class ResultController implements Initializable {
     @FXML private Label lblResult;
@@ -31,7 +30,8 @@ public class ResultController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Player winner = ticTacToe.getWinner();
-        winner.setWins(winner.getWins() + 1);
+        if (winner != null)
+            winner.setWins(winner.getWins() + 1);
         String result;
         if (winner != null){result = "Felicidades a " + winner.toString() + "!";} 
         else { result = "Empate";}

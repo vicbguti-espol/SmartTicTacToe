@@ -61,4 +61,8 @@ public class TicTacToe {
         return oponent;
     }
     
+    public boolean hasEnded(){
+        return board.hasEnded;
+    }
+    
 }

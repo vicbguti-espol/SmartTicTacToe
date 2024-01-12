@@ -35,18 +35,33 @@ public class TreeController implements Initializable {
         GridPane parentGrid = (GridPane) parentVBox.getChildren().get(0);
         Label utility = (Label) parentVBox.getChildren().get(1);
         
+        utility.setText("");
+        
         Board rootBoard = tree.getContent();
-        utility.setText("Utilidad: " + rootBoard.getUtility());
         
         this.crowd(parentGrid, rootBoard);
         
         for (int i = 0; i < tree.getChildren().size(); i++){
+            Tree subTree = (Tree) tree.getChildren().get(i);
+            
             VBox childVBox = (VBox) childrenHBox.getChildren().get(i);
             GridPane childGrid = (GridPane) childVBox.getChildren().get(0);
             Label childUtility = (Label) childVBox.getChildren().get(1);
             
             Board childBoard = tree.getChildren().get(i).getContent();
             childUtility.setText("Utilidad: " + childBoard.getUtility());
+            
+            childVBox.setOnMouseClicked(eh -> {
+                TreeController controller = new TreeController(subTree);
+                controller.setReturnController("tree", this);
+                try {
+                    App.setRoot("tree", controller);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            
+            });
+            
             
             this.crowd(childGrid, childBoard);
         }
