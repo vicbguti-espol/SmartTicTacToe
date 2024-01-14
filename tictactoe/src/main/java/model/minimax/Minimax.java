@@ -16,9 +16,11 @@ public class Minimax {
     public Minimax(TicTacToe game) {
         this.game = game;
         this.board = game.getBoard();
-        this.player = game.player;
-        this.oponent = game.oponent;
-        System.out.println(player + "" + oponent);
+        //this.player = game.player;
+        //this.oponent = game.oponent;
+        this.player = game.getPlayer();
+        this.oponent = game.getOponent();
+        //System.out.println(player + "" + oponent);
     }
     
     public int calculate() {
@@ -30,14 +32,17 @@ public class Minimax {
         
         Iterator<Tree<Board>> children = options.getChildrenIterator();
         while (children.hasNext()) {
+            System.out.println("ENTRO?");
             Tree<Board> child = children.next();
             int minUtility = seekMinimunUtility(child);
+            System.out.println("UTILIDAD min:" + minUtility);
             child.getContent().setUtility(minUtility);
             if (minUtility > maxUtility) {
                 bestBoard = child.getRoot();
                 maxUtility = minUtility;
             }
         }
+        System.out.println(bestBoard);
         return bestBoard.getLastMovement();
     }
     
@@ -56,7 +61,40 @@ public class Minimax {
         return minUtility;
     }
     
+    /*private int seekMinimunUtility(Tree<Board> child) {
+        int minUtility = 9;
+            Iterator <Tree<Board>> grandChildren = child.getChildrenIterator();
+            while (grandChildren.hasNext()) {
+                Tree<Board> grandChild = grandChildren.next();
+                int maxUtility = seekMaximunUtility(grandChild);
+                grandChild.getContent().setUtility(maxUtility);
+                if (maxUtility < minUtility) {
+                    minUtility = maxUtility;
+                }
+            }
+        return minUtility;
+    }
+    
+    private int seekMaximunUtility(Tree<Board> grandChild) {
+        int maxUtility = -9;
+            Iterator <Tree<Board>> greatGrandChildren = grandChild.getChildrenIterator();
+            while (greatGrandChildren.hasNext()) {
+                Tree<Board> greatGrandChild = greatGrandChildren.next();
+                Board board = greatGrandChild.getRoot();
+                int tmpUtility = calculateUtility(greatGrandChild.getRoot());
+                board.setUtility(tmpUtility);
+                if (tmpUtility > maxUtility) {
+                    maxUtility = tmpUtility;
+                }
+            }
+        return maxUtility;
+    }*/
+    
     private int calculateUtility(Board board) {
+        if (board.getWinner() != null){
+            //if (board.getWinner().equals(player.getSymbol())) return 8;
+             if (board.getWinner().equals(oponent.getSymbol())) return -8;
+        }
         return calculatePlayerWeight(board, this.player) 
                 - calculatePlayerWeight(board, this.oponent);
     }

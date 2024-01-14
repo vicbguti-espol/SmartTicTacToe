@@ -18,6 +18,20 @@ public class Board {
     private int lastMovement;
     private int utility;
     
+    /*public static void main(String[] args) {
+        Board board = new Board();
+        board.setSymbol(new Symbol('X'), 0);
+        board.setSymbol(new Symbol('O'), 1);
+        board.setSymbol(new Symbol('O'), 2);
+        board.setSymbol(new Symbol('X'), 3);
+        board.setSymbol(new Symbol('X'), 4);
+        //board.setSymbol(new Symbol('X'), 5);
+        board.setSymbol(new Symbol('O'), 6);
+        board.setSymbol(new Symbol('X'), 7);
+        board.setSymbol(new Symbol('O'), 8);
+        System.out.println(board.getWinner());
+    }*/
+    
     public Board(){
         suscribers = new LinkedList<>();
         boxes = new Box[ROWS*COLUMNS];

@@ -25,15 +25,25 @@ public class OptionRetriever {
         for (Tree dTree: tree.getChildren()){
             useBoard((Board) dTree.getContent(), oponent, dTree);
         }
+        
+        for (Tree dTree: tree.getChildren()){
+            for (Object tree3: dTree.getChildren()){
+                Tree<Board> t = (Tree<Board>) tree3;
+                useBoard(t.getContent(), player, t);
+            }
+            
+        }
     }
     
     private void useBoard(Board board, Player player, Tree tree){
-        for (int i = 0; i < board.ROWS * board.COLUMNS; i++){
-            Box box = board.boxes[i];
-            if (box.isEmpty()){
-                Board cBoard = new Board(board);
-                cBoard.setSymbol(player.getSymbol(), i);
-                tree.getChildren().add(new Tree(cBoard));
+        if (board.getWinner() == null){ 
+            for (int i = 0; i < board.ROWS * board.COLUMNS; i++){
+                Box box = board.boxes[i];
+                if (box.isEmpty()){
+                    Board cBoard = new Board(board);
+                    cBoard.setSymbol(player.getSymbol(), i);
+                    tree.getChildren().add(new Tree(cBoard));
+                }
             }
         }
     }
