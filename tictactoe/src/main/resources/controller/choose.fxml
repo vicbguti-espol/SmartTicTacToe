@@ -22,7 +22,7 @@
             </Label>
          </children>
       </HBox>
-      <GridPane stylesheets="@../styles/styles.css">
+      <GridPane alignment="TOP_CENTER" prefHeight="118.0" prefWidth="414.0" stylesheets="@../styles/styles.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,24 +38,24 @@
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <ComboBox fx:id="cmbModes" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" />
+            <ComboBox fx:id="cmbModes" prefHeight="24.0" prefWidth="300.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" />
             <Label prefHeight="24.0" prefWidth="102.0" styleClass="text" text="Jugador 1" GridPane.rowIndex="1">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSymbol1" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbSymbol1" prefHeight="24.0" prefWidth="300.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="24.0" prefWidth="116.0" styleClass="text" text="Jugador 2" GridPane.rowIndex="2">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSymbol2" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbSymbol2" prefHeight="24.0" prefWidth="300.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label styleClass="text" text="¿Quien inicia?" GridPane.rowIndex="3">
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <ComboBox fx:id="cmbFirst" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbFirst" prefHeight="24.0" prefWidth="300.0" styleClass="ComboBox" stylesheets="@../styles/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="10.0" prefWidth="600.0" spacing="30.0">

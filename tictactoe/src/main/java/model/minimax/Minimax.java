@@ -5,6 +5,7 @@ import java.util.Iterator;
 import model.board.Board;
 import model.game.TicTacToe;
 import dstructure.Tree;
+import model.game.Impossible;
 
 public class Minimax {
     private TicTacToe game;
@@ -21,20 +22,38 @@ public class Minimax {
     }
     
     public int calculate() {
-        Board bestBoard = null;
+       
         OptionRetriever optionRetriever = new OptionRetriever(game);
         optionRetriever.buildTree();
         this.options = optionRetriever.getTree();
+        
+        Board bestBoard = null;
         int maxUtility = -9;
         
         Iterator<Tree<Board>> children = options.getChildrenIterator();
         while (children.hasNext()) {
             Tree<Board> child = children.next();
+            
+            for (Tree<Board> dTree: child.getChildren()){
+                // useBoard(player, dTree);
+                for (Tree<Board> sTree: dTree.getChildren()){
+                    // useBoard(oponent, sTree);
+                    seekMinimunUtility(sTree);
+//                    for (Tree<Board> yTree: sTree.getChildren()){
+//                        // useBoard(player, yTree);
+//                    }
+                }
+            }
+            
+            
             int minUtility = seekMinimunUtility(child);
             child.getContent().setUtility(minUtility);
-            if (minUtility > maxUtility) {
-                bestBoard = child.getRoot();
-                maxUtility = minUtility;
+            final boolean isImpossible = game instanceof Impossible && !haveEnded(child);
+            if (isImpossible || !(game instanceof Impossible)){
+                if (minUtility > maxUtility) {
+                    maxUtility = minUtility;
+                    bestBoard = child.getRoot();
+                }
             }
         }
         return bestBoard.getLastMovement();
@@ -42,22 +61,25 @@ public class Minimax {
     
     private int seekMinimunUtility(Tree<Board> child) {
         int minUtility = 9;
-            Iterator <Tree<Board>> grandChildren = child.getChildrenIterator();
-            while (grandChildren.hasNext()) {
-                Tree<Board> grandChild = grandChildren.next();
-                Board board = grandChild.getRoot();
-                int tmpUtility = calculateUtility(grandChild.getRoot());
-                board.setUtility(tmpUtility);
-                if (tmpUtility < minUtility) {
-                    minUtility = tmpUtility;
-                }
+        Iterator <Tree<Board>> grandChildren = child.getChildrenIterator();
+        Board choosen = null;
+        while (grandChildren.hasNext()) {
+            Tree<Board> grandChild = grandChildren.next();
+            Board board = grandChild.getRoot();
+            int tmpUtility = calculateUtility(grandChild.getRoot());
+            board.setUtility(tmpUtility);
+            if (tmpUtility < minUtility) {
+                minUtility = tmpUtility;
+                choosen = board;
             }
+        }
         return minUtility;
     }
+
     
     private int calculateUtility(Board board) {
-        return - calculatePlayerWeight(board, this.player) 
-                + calculatePlayerWeight(board, this.oponent);
+        return calculatePlayerWeight(board, this.player) 
+                - calculatePlayerWeight(board, this.oponent);
     }
     
     private int calculatePlayerWeight(Board board, Player player) {
@@ -69,4 +91,13 @@ public class Minimax {
         int dw = diagonalsWeight.calculate();
         return rw + cw + dw;
     }
+
+    private boolean haveEnded(Tree<Board> child) {
+        for (Tree<Board> tree: child.getChildren()){ 
+            if (tree.getContent().hasEnded) return true;
+        }
+        return false;
+    }
+    
+    
 }

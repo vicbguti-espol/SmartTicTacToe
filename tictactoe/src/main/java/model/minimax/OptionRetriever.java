@@ -5,6 +5,8 @@ import model.board.Board;
 import model.game.TicTacToe;
 import model.player.Player;
 import dstructure.Tree;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class OptionRetriever {
     private Board board;
@@ -17,20 +19,29 @@ public class OptionRetriever {
         player = game.getPlayer();
         oponent = game.getOponent();
         tree = new Tree<>(new Board(board));
-        
-        System.out.println(player);
-        System.out.println(oponent);
     }
     
     public void buildTree(){
-        useBoard(board, oponent, tree);
+        buildTree(tree);
+    }
+    
+    public void buildTree(Tree<Board> tree1){
+        useBoard(oponent, tree1);
         
-        for (Tree dTree: tree.getChildren()){
-            useBoard((Board) dTree.getContent(), player, dTree);
+        for (Tree<Board> dTree: tree.getChildren()){
+            useBoard(player, dTree);
+            for (Tree<Board> sTree: dTree.getChildren()){
+                useBoard(oponent, sTree);
+                for (Tree<Board> yTree: sTree.getChildren()){
+                    useBoard(player, yTree);
+                }
+            }
         }
     }
     
-    private void useBoard(Board board, Player player, Tree tree){
+    private void useBoard(Player player, Tree tree){
+        Board board = (Board) tree.getRoot();
+        if (board.hasEnded) return;
         for (int i = 0; i < board.ROWS * board.COLUMNS; i++){
             Box box = board.boxes[i];
             if (box.isEmpty()){
@@ -40,6 +51,7 @@ public class OptionRetriever {
             }
         }
     }
+    
 
     public Tree<Board> getTree() {
         return tree;

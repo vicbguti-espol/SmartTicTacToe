@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1125.0" spacing="30.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1280.0" spacing="30.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button mnemonicParsing="false" onAction="#returnBefore" text="Volver">
          <font>
@@ -98,11 +98,8 @@
          </children>
       </HBox>
       <HBox fx:id="childrenHBox" alignment="CENTER" prefHeight="220.0" prefWidth="1046.0" spacing="30.0">
-         <padding>
-            <Insets left="30.0" right="30.0" />
-         </padding>
          <children>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -168,86 +165,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
-               <children>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <GridPane alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="100.0" prefWidth="166.0" styleClass="board" stylesheets="@../styles/styles.css">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" prefHeight="84.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="94.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="76.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="108.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="83.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="70.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="72.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="72.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -257,7 +175,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -323,7 +241,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -333,7 +251,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -399,7 +317,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -409,7 +327,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -475,7 +393,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -485,7 +403,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -551,7 +469,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -561,7 +479,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -627,7 +545,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -637,7 +555,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="157.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
                <children>
                   <Label styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
@@ -703,7 +621,159 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label styleClass="text" stylesheets="@../styles/styles.css" text="Utilidad: ">
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
+               <children>
+                  <Label styleClass="text" stylesheets="@../styles/styles.css">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="100.0" prefWidth="166.0" styleClass="board" stylesheets="@../styles/styles.css">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="84.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="94.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="76.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="108.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="83.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="70.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="72.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="72.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="160.0" spacing="10.0">
+               <children>
+                  <Label styleClass="text" stylesheets="@../styles/styles.css">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="BOTTOM_LEFT" gridLinesVisible="true" prefHeight="100.0" prefWidth="166.0" styleClass="board" stylesheets="@../styles/styles.css">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="84.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="94.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="76.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="108.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="83.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="70.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="72.0" prefWidth="55.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="72.0" prefWidth="56.0" styleClass="box" stylesheets="@../styles/styles.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label prefHeight="20.0" prefWidth="134.0" styleClass="text" stylesheets="@../styles/styles.css">
                      <font>
                         <Font size="16.0" />
                      </font>

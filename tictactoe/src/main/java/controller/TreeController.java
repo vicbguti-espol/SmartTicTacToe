@@ -4,7 +4,6 @@ import dstructure.Tree;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -49,8 +48,9 @@ public class TreeController implements Initializable {
     }
 
     private void crowdChildren() {
-        int max = tree.getChildren().get(0).getContent().getUtility();
+        int max = !minState ? Integer.MIN_VALUE: Integer.MAX_VALUE;
         VBox maxVBox = (VBox) childrenHBox.getChildren().get(0);
+        
         for (int i = 0; i < tree.getChildren().size(); i++){
             Tree subTree = (Tree) tree.getChildren().get(i);
             VBox childVBox = (VBox) childrenHBox.getChildren().get(i);
@@ -61,15 +61,20 @@ public class TreeController implements Initializable {
 
             final int utility = childBoard.getUtility();
             childUtility.setText("Utilidad: " + utility);
+            
+            if (childBoard.choosen) maxVBox = childVBox;
             if (!minState && max < utility){
                 max = utility;
                 maxVBox = childVBox; 
             } else if (minState && max > utility){
                 max = utility;
                 maxVBox = childVBox;
-            }
-            
+            }          
             initVBox(childVBox, subTree);
+        }
+
+        for (int j = childrenHBox.getChildren().size() - 1; j > tree.getChildren().size() - 1; j--){
+            childrenHBox.getChildren().remove(j);
         }
         
         maxVBox.setStyle("-fx-background-color: #F3F8FF;");
@@ -83,7 +88,7 @@ public class TreeController implements Initializable {
         childVBox.setOnMouseClicked(eh -> {
             TreeController controller = new TreeController(subTree);
             controller.setReturnController("tree", this);
-            controller.setMinState(true);
+            controller.setMinState(!minState);
             try {
                 App.setRoot("tree", controller);
             } catch (IOException ex) {

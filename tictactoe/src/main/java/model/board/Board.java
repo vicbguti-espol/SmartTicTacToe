@@ -18,6 +18,7 @@ public class Board {
     private int lastMovement;
     private int utility;
     public boolean hasEnded;
+    public boolean choosen;
     
     public Board(){
         hasEnded = false;
@@ -180,6 +181,10 @@ public class Board {
             board += Arrays.toString(row) + "\n";
         }
         return board + '}';
+    }
+    
+    public void setChoosen(boolean choosen){
+        this.choosen = choosen;
     }
 }
     

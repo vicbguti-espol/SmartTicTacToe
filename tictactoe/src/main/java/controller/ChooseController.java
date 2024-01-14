@@ -40,14 +40,21 @@ public class ChooseController implements Initializable {
         addModes();
         addSymbols();
         initDisable();
-        
-        cmbModes.setOnAction(e -> {
-            if (cmbModes.getValue() instanceof HumanComputer){
+        initModes();
+    }
+
+    private void initModes() {
+        cmbModes.setOnAction(e -> { 
+            TicTacToe mode = (TicTacToe) cmbModes.getValue();
+            addSymbols();
+            initDisable();
+            
+            if (mode instanceof HumanComputer){
                 cmbSymbol1.setDisable(false);
                 cmbSymbol2.setDisable(true);
             }
             
-            if (cmbModes.getValue() instanceof HumanHuman){
+            if (mode instanceof HumanHuman){
                 cmbSymbol1.setDisable(false);
                 cmbSymbol2.setDisable(false);
                 
@@ -58,7 +65,7 @@ public class ChooseController implements Initializable {
                 });
             }            
             
-            if (cmbModes.getValue() instanceof ComputerComputer){
+            if (mode instanceof ComputerComputer){
                 cmbSymbol1.setDisable(true);
                 cmbSymbol2.setDisable(true);
                 
@@ -84,7 +91,7 @@ public class ChooseController implements Initializable {
             
             cmbSymbol1.setOnAction(ep -> {
                 
-                if (cmbModes.getValue() instanceof HumanComputer){
+                if (mode instanceof HumanComputer){
                     Symbol s1 = (Symbol) cmbSymbol1.getValue();
                     cmbSymbol2.getItems().remove(s1);
                     cmbSymbol2.setValue(cmbSymbol2.getItems().get(0));
@@ -94,11 +101,8 @@ public class ChooseController implements Initializable {
                     initCmbFirst();
                 }
                 
-            });
-            
-                
+            });    
         });
-        
     }
 
     private void initDisable() {
@@ -110,6 +114,9 @@ public class ChooseController implements Initializable {
 
 
     private void addSymbols() {
+        cmbSymbol1.getItems().clear();
+        cmbSymbol2.getItems().clear();
+        
         cmbSymbol1.getItems().add(new Symbol('X'));
         cmbSymbol1.getItems().add(new Symbol('O'));
         
@@ -118,6 +125,7 @@ public class ChooseController implements Initializable {
     }
 
     private void addModes() {
+        cmbModes.getItems().clear();
         cmbModes.getItems().add(new Easy());
         cmbModes.getItems().add(new Impossible());
         cmbModes.getItems().add(new ComputerComputer());
@@ -167,5 +175,23 @@ public class ChooseController implements Initializable {
         game.setPlayers(game.players);
         System.out.println(game.players);
         App.setRoot("game", new GameController(game));
+    }
+    
+    @FXML
+    void resetOptions(){
+        cmbModes.setValue(null);
+        cmbSymbol1.setValue(null);
+        cmbSymbol2.setValue(null);
+        cmbFirst.setValue(null);
+        
+        cmbModes.getItems().clear();
+        cmbSymbol1.getItems().clear();
+        cmbSymbol2.getItems().clear();
+        cmbFirst.getItems().clear();
+        
+        addModes();
+        addSymbols();
+        initDisable();
+        initModes();
     }
 }
