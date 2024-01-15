@@ -71,7 +71,6 @@ public class GameController implements Subscriber, Initializable {
     
     
     private void botTurn(){
-        Player bot = game.getNext();
         setTurnLabel(game.players.peek());
         
         gpBoard.setDisable(true);
@@ -82,6 +81,7 @@ public class GameController implements Subscriber, Initializable {
         
         int bestMovement = minimax.calculate();
         Label name = (Label) gpBoard.getChildren().get(bestMovement);
+        Player bot = game.getNext();
         setSymbol(bot, bestMovement, name);
         gpBoard.setDisable(false);
     }

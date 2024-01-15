@@ -26,14 +26,14 @@ public class OptionRetriever {
     }
     
     public void buildTree(Tree<Board> tree1){
-        useBoard(oponent, tree1);
+        useBoard(player, tree1);
         
         for (Tree<Board> dTree: tree.getChildren()){
-            useBoard(player, dTree);
+            useBoard(oponent, dTree);
             for (Tree<Board> sTree: dTree.getChildren()){
-                useBoard(oponent, sTree);
+                useBoard(player, sTree);
                 for (Tree<Board> yTree: sTree.getChildren()){
-                    useBoard(player, yTree);
+                    useBoard(oponent, yTree);
                 }
             }
         }
