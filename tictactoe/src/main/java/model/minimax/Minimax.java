@@ -21,7 +21,6 @@ public class Minimax {
         this.board = game.getBoard();
         this.player = game.getPlayer();
         this.oponent = game.getOponent();
-        System.out.println(player + " " + oponent);
     }
     
     public int calculate() {
@@ -32,26 +31,17 @@ public class Minimax {
         
         Board bestBoard = null;
         int maxUtility = -9;
-        
-        System.out.println("\n\nEMPIEZA MINIMAX");
-        
+                
         Iterator<Tree<Board>> children = options.getChildrenIterator();
         while (children.hasNext()) {
             Tree<Board> child = children.next();
-            System.out.println("\nEMPIEZA ITERACION");
-            System.out.println("PRUEBA" +child.getRoot());
-            
             
             int minUtility = seekMinUtility(child);
-            System.out.println("UTILIDAD MINIMA: " + minUtility);
             child.getContent().setUtility(minUtility);
-            final boolean isImpossible = game instanceof Impossible && !haveEnded(child);
-            //if (isImpossible || !(game instanceof Impossible)){
             if (end(child.getContent())) {
                 if (minUtility > maxUtility) {
                     maxUtility = minUtility;
                     bestBoard = child.getRoot();
-                    System.out.println("Mejor tablero: " + bestBoard);
                 }
             }
         }
@@ -62,11 +52,6 @@ public class Minimax {
         return board.getWinner() == null || board.getWinner().equals(player.getSymbol());
     }
     
-    private boolean hasLost(Board board){
-        return board.getWinner() != null && board.getWinner().equals(oponent.getSymbol());
-    }
-    
-    //Recursivo
     private int seekMinUtility(Tree<Board> tree) {
         int minUtility = 9;
         Iterator <Tree<Board>> children = tree.getChildrenIterator();
@@ -79,10 +64,8 @@ public class Minimax {
             Tree<Board> child = children.next();
             int maxUtility = seekMaxUtility(child);
             child.getContent().setUtility(maxUtility);
-            //if (end(grandChild.getContent())) {
             if (maxUtility < minUtility) {
                 minUtility = maxUtility;
-            //}
             }
         }
         return minUtility;
@@ -100,11 +83,9 @@ public class Minimax {
             Tree<Board> child = children.next();
             int lastMinUtility = seekMinUtility(child);
             child.getContent().setUtility(lastMinUtility);
-            //if (end(greatGrandChild.getContent())) {
             if (lastMinUtility > maxUtility) {
                 maxUtility = lastMinUtility;
             }
-            //}
         }
         return maxUtility;
     }
@@ -126,30 +107,6 @@ public class Minimax {
         int cw = columnsWeight.calculate();
         int dw = diagonalsWeight.calculate();
         return rw + cw + dw;
-    }
-    
-    //ver si existen chances de ganar en una rama (no funciona)
-    private boolean hasChances(Tree<Board> tree) {
-        Queue<Tree<Board>> queue = new LinkedList();
-        Tree<Board> root = tree;
-        queue.offer(tree);
-        while (!queue.isEmpty()) {
-            Tree<Board> tmp = queue.poll();
-            for (Tree<Board> child: tmp.getChildren()) {
-                queue.offer(child);
-                Board childBoard = child.getContent();
-                System.out.println("Verifica si perdio " + childBoard + "" + hasLost(childBoard));
-                if (hasLost(childBoard)) return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean haveEnded(Tree<Board> child) {
-        for (Tree<Board> tree: child.getChildren()){ 
-            if (tree.getContent().hasEnded) return true;
-        }
-        return false;
     }
     
     
