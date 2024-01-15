@@ -7,14 +7,17 @@ import model.player.Player;
 import dstructure.Tree;
 import java.util.LinkedList;
 import java.util.Queue;
+import model.game.Impossible;
 
 public class OptionRetriever {
+    private TicTacToe game;
     private Board board;
     private Player player;
     private Player oponent;
     public Tree<Board> tree;
     
     public OptionRetriever(TicTacToe game){
+        this.game = game;
         board = game.getBoard();
         player = game.getPlayer();
         oponent = game.getOponent();
@@ -30,14 +33,16 @@ public class OptionRetriever {
         
         for (Tree<Board> dTree: tree.getChildren()){
             useBoard(oponent, dTree);
-            for (Tree<Board> sTree: dTree.getChildren()){
-                useBoard(player, sTree);
-                for (Tree<Board> yTree: sTree.getChildren()){
-                    useBoard(oponent, yTree);
-                    for (Tree<Board> xTree: yTree.getChildren()){
-                        useBoard(player, xTree);
-                        for (Tree<Board> pTree: xTree.getChildren()){
-                            useBoard(oponent, pTree);
+            if(game instanceof Impossible){
+                for (Tree<Board> sTree: dTree.getChildren()){
+                    useBoard(player, sTree);
+                    for (Tree<Board> yTree: sTree.getChildren()){
+                        useBoard(oponent, yTree);
+                        for (Tree<Board> xTree: yTree.getChildren()){
+                            useBoard(player, xTree);
+                            for (Tree<Board> pTree: xTree.getChildren()){
+                                useBoard(oponent, pTree);
+                            }
                         }
                     }
                 }
