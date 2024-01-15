@@ -34,6 +34,12 @@ public class OptionRetriever {
                 useBoard(player, sTree);
                 for (Tree<Board> yTree: sTree.getChildren()){
                     useBoard(oponent, yTree);
+                    for (Tree<Board> xTree: yTree.getChildren()){
+                        useBoard(player, xTree);
+                        for (Tree<Board> pTree: xTree.getChildren()){
+                            useBoard(oponent, pTree);
+                        }
+                    }
                 }
             }
         }
