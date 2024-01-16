@@ -46,7 +46,11 @@ public class GameController implements Subscriber, Initializable {
                     Player currentPlayer = game.getNext();
                     setSymbol(currentPlayer, index, lblBox);
                     setTurnLabel(game.players.peek());
-                    if (game.players.peek() instanceof Bot) botTurn();
+                    System.out.println("GANO: " + game.board.getWinner());
+                    System.out.println("GANO: " + game.hasEnded());
+                    if (!game.hasEnded()){
+                        if (game.players.peek() instanceof Bot) botTurn();
+                    }
                 }
             });
         }
